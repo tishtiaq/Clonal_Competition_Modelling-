@@ -6,8 +6,9 @@ Created on Tue Jun 23 11:33:19 2026
 @author: syedtariqishtiaq
 """
 
-# My code (wrote new) for running inference data
-
+# FOR RUNNING SIMULATIONS
+# My code (wrote new) for RUNNING inference data
+# Do not run this in python as it will go on forever
 
 from pyabc import (ABCSMC, RV, Distribution, PNormDistance)
 # Here we're importing classes to use later. pyabc is used for 
@@ -176,6 +177,9 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
         return ERROR_OBJECT # returns the defined upper bound
         
 if __name__ == "__main__":
+# Without this line, code continues to crash as everytime a worker process reimported the file, it retriggered the 
+# same code that sat at the top of the file. This tried to begin more worker processes before the initial one had even
+# started up. FIx tells workers to only start fitting process when they deliberately run the file.
     priors = Distribution(
         fitness = RV("uniform", 0, 50), # can tighten upper bound for greater efficiency
         induction = RV("uniform", 0, 0.1)
