@@ -1,0 +1,88 @@
+import numpy as np
+import pytest
+from pydantic import ValidationError
+
+from src.clone_competition_simulation.parameters.label_validation import LabelParameters, LabelValidator
+
+
+@pytest.fixture
+def empty_label_parameters():
+    return LabelParameters(tag="Base")
+
+
+def test_label_validation_missing_parameters1():
+    with pytest.raises(ValidationError) as exc_info:
+        p = LabelValidator(tag="Full")
+
+    assert 'algorithm\n' in str(exc_info)
+
+
+def test_label_array_types():
+    p = LabelParameters(
+        label_genes=["Gene1", "Gene2", "Gene3"]
+    )
+    assert p.label_genes == ["Gene1", "Gene2", "Gene3"]
+
+
+def test_label_validation1(validated_population_parameters, validated_fitness_parameters, empty_label_parameters):
+    p = LabelValidator(
+        algorithm="WF2D",
+        tag="Full",
+        population=validated_population_parameters,
+        fitness=validated_fitness_parameters,
+        config_file_settings=empty_label_parameters,
+        initial_label_array=1,
+        label_times=2,
+        label_frequencies=0.01,
+        label_values=3,
+        label_genes=None,
+    )
+
+    np.testing.assert_array_equal(p.initial_label_array, np.array([1]))
+    np.testing.assert_array_equal(p.label_times, np.array([2]))
+    np.testing.assert_array_equal(p.label_frequencies, np.array([0.01]))
+    np.testing.assert_array_equal(p.label_values, np.array([3]))
+    np.testing.assert_array_equal(p.label_genes, np.array([None]))
+
+
+def test_label_validation2(validated_population_parameters,
+                           validated_fitness_parameters_multi_gene,
+                           empty_label_parameters):
+    p = LabelValidator(
+        algorithm="WF2D",
+        tag="Full",
+        population=validated_population_parameters,
+        fitness=validated_fitness_parameters_multi_gene,
+        config_file_settings=empty_label_parameters,
+        initial_label_array=1,
+        label_times=2,
+        label_frequencies=0.01,
+        label_values=3,
+        label_genes="Gene1",
+    )
+
+    np.testing.assert_array_equal(p.initial_label_array, np.array([1]))
+    np.testing.assert_array_equal(p.label_times, np.array([2]))
+    np.testing.assert_array_equal(p.label_frequencies, np.array([0.01]))
+    np.testing.assert_array_equal(p.label_values, np.array([3]))
+    np.testing.assert_array_equal(p.label_genes, np.array(["Gene1"]))
+
+
+def test_label_validation3(validated_population_parameters,
+                           validated_fitness_parameters,
+                           empty_label_parameters):
+    with pytest.raises(ValidationError) as exc_info:
+        p = LabelValidator(
+            algorithm="WF2D",
+            tag="Full",
+            population=validated_population_parameters,
+            fitness=validated_fitness_parameters,
+            config_file_settings=empty_label_parameters,
+            initial_label_array=1,
+            label_times=2,
+            label_frequencies=0.01,
+            label_values=3,
+            label_genes="Gene1",
+        )
+
+    assert 'Applying labels with mutations to particular genes requires a' in str(exc_info)

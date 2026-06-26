@@ -1,0 +1,108 @@
+[![docs](https://img.shields.io/badge/docs-blue)](https://michaelhall28.github.io/clone-competition-simulation/)
+
+# clone-competition-simulation
+Python3 simulations of clone competition during ongoing mutagenesis.
+
+## Installation
+First install [GNU Scientific Library](https://www.gnu.org/software/gsl/) 
+([homebrew](https://formulae.brew.sh/formula/gsl)) and [FFMPEG](https://ffmpeg.org/)
+([homebrew](https://formulae.brew.sh/formula/ffmpeg)).  
+
+Then install from PyPi, e.g.
+```shell
+pip install clone-competition-simulation
+```
+----
+Alternatively, install using the code from GitHub.  
+
+Install [UV](https://docs.astral.sh/uv/).  
+
+Clone the git repository  
+`git clone https://github.com/michaelhall28/clone-competition-simulation.git`
+
+and install the code in this repository  
+`uv pip install -e .`
+
+## Running simulations
+
+First, the parameters for the simulation are defined. The Parameters class checks that the parameters are appropriate for the chosen algorithm.
+e.g.
+```python
+from clone_competition_simulation.parameters import Parameters, TimeParameters, PopulationParameters, FitnessParameters
+from clone_competition_simulation.fitness import Gene, UniformDist, FitnessCalculator, multiply_fitness
+
+# Define the effect of mutations that appear during the simulation
+fitness_calculator = FitnessCalculator(genes=[Gene(name='example_gene', 
+                                                   mutation_distribution=UniformDist(1, 2), synonymous_proportion=0.5)],
+                                       combine_mutations=multiply_fitness)
+
+p = Parameters(
+        algorithm="WF2D",
+        population=PopulationParameters(grid_shape=(100, 100), cell_in_own_neighbourhood=True),
+        times=TimeParameters(max_time=20, division_rate=1),
+        fitness=FitnessParameters(mutation_rates=0.01, fitness_calculator=fitness_calculator)
+    )
+
+```
+
+Then the simulation can be initialised and run from the parameter object
+
+```
+s = p.get_simulator()
+s.run_sim()
+s.muller_plot()
+```
+
+Each parameter class has a docstring describing how to use the arguments 
+(e.g.`help(TimeParameters)` or `print(TimeParameters.__doc__)`).  
+See the [docs](https://michaelhall28.github.io/clone-competition-simulation/) for more detailed guides. 
+
+### Updates from version 0.0.1 (pre-2025)
+
+* The parameters are grouped by theme (timing, cell population, mutation fitness etc). Can be grouped using the 
+  parameter classes or using dictionaries. 
+* Some parameters have to be explicitly given instead of using default values (max_time, division_rate, 
+  fitness_calculator, cell_in_own_neighbourhood)
+```python
+####  Old 
+p = Parameters(
+    algorithm='WF2D', 
+    grid_shape=(100, 100),
+    mutation_rates=0.01,
+)
+
+####  New 
+p = Parameters(
+    algorithm='WF2D',
+    population=PopulationParameters(grid_shape=(100, 100), cell_in_own_neighbourhood=False),
+    times=TimeParameters(max_time=10, division_rate=1),
+    fitness=FitnessParameters(mutation_rates=0.01, fitness_calculator=fitness_calculator)
+)
+# or
+p = Parameters(
+    algorithm='WF2D',
+    population=dict(grid_shape=(100, 100), cell_in_own_neighbourhood=False),
+    times=dict(max_time=10, division_rate=1),
+    fitness=dict(mutation_rates=0.01, fitness_calculator=fitness_calculator)
+)
+```
+* A yml file can be used to supply parameters. These can be combined with `__init__` parameters.  
+* Biopsies are now Pydantic classes (`from clone_competition import Biopsy`) instead of dictionaries
+* Plot colours are specified in a new way
+* Custom cell competition rules are now easier to implement
+
+See the [docs](https://michaelhall28.github.io/clone-competition-simulation/) for more details. 
+
+## Algorithms
+There are 5 algorithms that can be run.
+
+Non-spatial algorithms:
+- "Branching". A branching process based on the single progenitor model from Clayton, Elizabeth, et al. "A single type of progenitor cell maintains normal epidermis." Nature 446.7132 (2007): 185-189.
+- "Moran". A Moran-style model. At each simulation step, one cell dies and another cell divides, maintaining the overall population.  
+- "WF". A Wright-Fisher style model. At each simulation step an entire generation of cells is produced from the previous generation.
+
+2D algorithms:
+- "Moran2D". A Moran-style model constrained to a 2D hexagonal grid. At each simulation step, one cell dies and a *cell from an adjacent location in the grid* divides, maintaining the overall population.
+- "WF2D". A Wright-Fisher style model constrained to a 2D hexagonal grid. At each simulation step an entire generation of cells is produced from the previous generation, where cell parents must be from the local neighbourhood in the grid.
+
+These algorithms can also be used as a framework for custom cell competition rules. 
