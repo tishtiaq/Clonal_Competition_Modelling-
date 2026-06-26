@@ -20,10 +20,10 @@ from scipy.stats import ks_2samp
 # This is one of the tests used to compare whether two samples come 
 # from the same distribution 
 from collections import OrderedDict
-from clone_competition_simulation.parameters import Parameters
+# from clone_competition_simulation.parameters import Parameters
 import pyabc.visualization.credible as credible
 import sys
-
+sys.path.append("../../archive/mhrepo/clone-competition-simulation-master/src")
 from clone_competition_simulation.parameters import (Parameters, 
     PopulationParameters, TimeParameters, FitnessParameters, LabelParameters)                                                 
 # Above, we also have to import the parameters as separate classes
@@ -184,7 +184,7 @@ def main():
 # Sets up initial beliefs about the data to apply ABC on (gives
 # very wide initial berth. RV is imported from pyabc.)
 
-    DATA_FILE = "41467_2022_33945_MOESM5_ESM.xlsx"
+    DATA_FILE = "../../data/41467_2022_33945_MOESM5_ESM.xlsx"
     # load the data file
     times = np.array([7*i for i in [1.5, 3, 6, 12, 24, 52]])          
     # Multiplying by 7 gives us the timepoints in days instead
