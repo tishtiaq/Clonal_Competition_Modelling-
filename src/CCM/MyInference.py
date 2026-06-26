@@ -174,8 +174,9 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
         print('Error!')
         print(e)
         return ERROR_OBJECT # returns the defined upper bound
-        
-if __name__ == "__main__":
+
+def main():
+    print("creating priors")
     priors = Distribution(
         fitness = RV("uniform", 0, 50), # can tighten upper bound for greater efficiency
         induction = RV("uniform", 0, 0.1)
@@ -189,6 +190,7 @@ if __name__ == "__main__":
     # Multiplying by 7 gives us the timepoints in days instead
     # weeks, and transforming it a numpy array makes it easier
     # to work with 
+    print("times created")
     dataset = pd.read_excel(DATA_FILE, sheet_name="Supplementary Data 5", skiprows=5, skipfooter=1,
                            usecols="E", header=None, engine='openpyxl').to_numpy()[:,0]
     # Open an excel file and read it into in a table pandas 
@@ -241,21 +243,6 @@ if __name__ == "__main__":
     for p in ['fitness', 'induction']:
         print(p, get_estimate_and_ci_for_param(p, df, w))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    print("Running main")
+    main()
