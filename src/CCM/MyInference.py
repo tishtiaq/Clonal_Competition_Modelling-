@@ -48,7 +48,7 @@ ERROR_OBJECT = {'distance': 100000}
 # Or any large number will work: the pyabc algorithm will use this as
 # an upper bound
 
-LOOP_LIMITS = 50
+LOOP_LIMITS = 5
 # 4 grids is a full mouse oesophagus: 50 grids is then 12.5 mice worth
 # Therefore if fitness or induction is very low early on, clones will
 # die out. So, 50 is a safe cap of, try 50 times, and at least some 
