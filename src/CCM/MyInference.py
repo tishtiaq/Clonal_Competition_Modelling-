@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jun 23 11:33:19 2026
@@ -20,10 +20,10 @@ from scipy.stats import ks_2samp
 # This is one of the tests used to compare whether two samples come 
 # from the same distribution 
 from collections import OrderedDict
-# from clone_competition_simulation.parameters import Parameters
+from clone_competition_simulation.parameters import Parameters
 import pyabc.visualization.credible as credible
 import sys
-sys.path.append("../../archive/mhrepo/clone-competition-simulation-master/src")
+
 from clone_competition_simulation.parameters import (Parameters, 
     PopulationParameters, TimeParameters, FitnessParameters, LabelParameters)                                                 
 # Above, we also have to import the parameters as separate classes
@@ -48,7 +48,7 @@ ERROR_OBJECT = {'distance': 100000}
 # Or any large number will work: the pyabc algorithm will use this as
 # an upper bound
 
-LOOP_LIMITS = 5
+LOOP_LIMITS = 50
 # 4 grids is a full mouse oesophagus: 50 grids is then 12.5 mice worth
 # Therefore if fitness or induction is very low early on, clones will
 # die out. So, 50 is a safe cap of, try 50 times, and at least some 
@@ -174,9 +174,8 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
         print('Error!')
         print(e)
         return ERROR_OBJECT # returns the defined upper bound
-
-def main():
-    print("creating priors")
+        
+if __name__ == "__main__":
     priors = Distribution(
         fitness = RV("uniform", 0, 50), # can tighten upper bound for greater efficiency
         induction = RV("uniform", 0, 0.1)
@@ -184,13 +183,12 @@ def main():
 # Sets up initial beliefs about the data to apply ABC on (gives
 # very wide initial berth. RV is imported from pyabc.)
 
-    DATA_FILE = "../../data/41467_2022_33945_MOESM5_ESM.xlsx"
+    DATA_FILE = "41467_2022_33945_MOESM5_ESM.xlsx"
     # load the data file
     times = np.array([7*i for i in [1.5, 3, 6, 12, 24, 52]])          
     # Multiplying by 7 gives us the timepoints in days instead
     # weeks, and transforming it a numpy array makes it easier
     # to work with 
-    print("times created")
     dataset = pd.read_excel(DATA_FILE, sheet_name="Supplementary Data 5", skiprows=5, skipfooter=1,
                            usecols="E", header=None, engine='openpyxl').to_numpy()[:,0]
     # Open an excel file and read it into in a table pandas 
@@ -217,7 +215,7 @@ def main():
     # a partial object has no __name__: this changes that so 
     # f's __name__ is now run_sim
     abc = ABCSMC(f, priors, distance, population_size=100, sampler=sampler)
-    db_path = ("sqlite:///" + "TP53_All6_Averaged"+'_pyabc.db')
+    db_path_all = ("sqlite:///" + "TP53_All6_Averaged"+'_pyabc.db')
     # constructs address of where the database should live
     
     r = abc.new(db_path, {'distance': 0})
@@ -243,6 +241,21 @@ def main():
     for p in ['fitness', 'induction']:
         print(p, get_estimate_and_ci_for_param(p, df, w))
 
-if __name__ == '__main__':
-    print("Running main")
-    main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
