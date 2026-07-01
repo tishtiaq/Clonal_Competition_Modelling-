@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 
 import pandas as pd
 import os
-from pyabc.visualization import plot_kde_2d, plot_kde_matrix, plot_kde_1d, plot_credible_intervals
 from pyabc import History
+from pyabc.visualization import plot_kde_2d, plot_kde_matrix, plot_kde_1d, plot_credible_intervals
 
 from pyabc.visualization.credible import compute_credible_interval, compute_kde_max, compute_quantile
 from collections import OrderedDict
@@ -86,6 +86,7 @@ def plot_results(all_results):
     
     plt.xticks(range(3), ['First 2 timepoints (Weeks 1.5, 3)', 'First 3 timepoints (Weeks 1.5, 3, 6)',
                           'All 6 timepoints (Weeks 1.5, 3, 6, 12, 24, 52)'])
+    plt.show()
     
     # TODO: Add something which saves graph to files 
     
