@@ -1,4 +1,4 @@
-# Muller Plots
+# Muller Plots (WF)
 
 Comparing 1 wild-type clone and 1 higher-fitness clone, using either a
 linear or exponential (decreasing) fitness function for the non-wild-type clone.
