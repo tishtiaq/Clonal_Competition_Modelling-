@@ -184,7 +184,7 @@ if __name__ == "__main__":
 # Sets up initial beliefs about the data to apply ABC on (gives
 # very wide initial berth. RV is imported from pyabc.)
 
-    DATA_FILE = "41467_2022_33945_MOESM5_ESM.xlsx"
+    DATA_FILE = "data/41467_2022_33945_MOESM5_ESM.xlsx"
     # load the data file
     times = np.array([7*i for i in [1.5, 3, 6]])          
     # Multiplying by 7 gives us the timepoints in days instead
@@ -219,7 +219,7 @@ if __name__ == "__main__":
     db_path_first3 = ("sqlite:///" + "TP53First3"+'_pyabc.db')
     # constructs address of where the database should live
     
-    r = abc.new(db_path_first3, {'distance': 0})
+    r = abc.load(db_path_first3)
     # creates new database file. {'distance': 0} tells pyabc 
     # what the data looks like, in the same shape that run_sim
     # returns its results in
