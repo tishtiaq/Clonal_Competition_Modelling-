@@ -4,12 +4,10 @@
 
 # This function always finishes with a fitness of 1, yet takes different starting values. The slope is calculated 
 # based on the starting value. 
-import os
-print(os.getcwd())
 
 import matplotlib.pyplot as plt
 import numpy as np
-from clone_competition_simulation import (WF, Parameters, FitnessParameters, TimeParameters,
+from clone_competition_simulation import (WF, Moran, Parameters, FitnessParameters, TimeParameters,
                                           PopulationParameters, TreatmentParameters)
 
 from clone_competition_simulation.simulation_algorithms.current_data import NonSpatialCurrentData
@@ -17,17 +15,7 @@ import clone_competition_simulation
 
 class LinearFitness(WF):
     # Defining a class based on the linear function f(t)=a-bt
-    '''
-    def __init__(self, parameters, b_slope, a_intercept):
-        self.slope = b_slope
-        self.intercept = a_intercept
-        #Defines the gradient and intercept
-        super().__init__(parameters)
-      # This calls the superclass (WF) to begin the simulation with their provided parameters.
-
-      # Redefined so that it only takes the starting value, and calculates the slope based off the starting value
-      # and fact that we have to finish with a fitness of 1.
-    '''
+    
     def __init__(self, parameters, a_intercept):
         b_slope = (a_intercept - 1) / 10
         self.slope = b_slope
@@ -41,7 +29,7 @@ class LinearFitness(WF):
     def get_next_generation(self, current_data:NonSpatialCurrentData) ->  np.ndarray[tuple[int], np.dtype[np.int_]]:
       # This function returns cell counts for the next generation. 
       current_time = self.i / self.division_rate
-      new_fitness = self.intercept - self.slope * current_time
+      new_fitness = self.intercept - self.slope * current_time   # Here we define the operation 
       self.clones_array[1, self.fitness_idx] = new_fitness
       # self.clones_array is the table listing id, label, fitness, generation, parent id. This line updates the fitness of the 
       # second clone (only, as the other is wild-type) based on the linear function.
@@ -50,7 +38,7 @@ class LinearFitness(WF):
 params = Parameters(
     algorithm="WF", 
     times=TimeParameters(max_time=10, division_rate=1), 
-    population=PopulationParameters(initial_size_array=np.array([250, 750])),
+    population=PopulationParameters(initial_size_array=np.array([750, 250])),
     fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.5])),
 )
     # Pass the parameters to the custom class
@@ -62,6 +50,13 @@ sim.muller_plot(figsize=(5, 5))
 plt.title("Competition Between One Wild-Type Clone and One Fitter Clone of Linearly Decreasing Fitness")
 plt.xlabel("Time")
 plt.ylabel("Clone Size")
+
+
+import os
+docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
+plt.savefig(os.path.join(docs_dir, 'moran_muller_linear_750_250.png'), dpi=150, bbox_inches='tight')
+
+
 plt.show()
 # print("Final fitness of the second clone:", sim.clones_array[1, sim.fitness_idx])
 

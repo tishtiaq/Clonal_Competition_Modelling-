@@ -3,7 +3,7 @@
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-from clone_competition_simulation import (WF, Parameters, FitnessParameters, TimeParameters,
+from clone_competition_simulation import (WF, Moran, Parameters, FitnessParameters, TimeParameters,
                                           PopulationParameters, TreatmentParameters)
 
 from clone_competition_simulation.simulation_algorithms.current_data import NonSpatialCurrentData
@@ -36,7 +36,8 @@ population=PopulationParameters(initial_size_array=np.array((500, 500))),
 fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.5])),
 )
     # Pass the parameters to the custom class
-sim = OscillatingFitness(params, a_coefficient=0.2, b_scale=1.0, c_phase=-1.0, d_offset=1.0)
+sim = OscillatingFitness(params, a_coefficient=0.5, b_scale=1.0, c_phase=-1.0, d_offset=1.1)
+# These exact coefficients range between roughly 0.5 and 1.5
 # TODO: Fix numbers to ensure we finish with a fitness of 1 for this starting fitness of 1.5
 
 sim.run_sim()
