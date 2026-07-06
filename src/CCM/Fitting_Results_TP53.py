@@ -64,18 +64,18 @@ def plot_results(all_results):
     
     plt.figure(figsize=(4.2,4))
     # also may need changing to better fit data
-    plt.bar(range(1), np.array(tops)-np.array(bottoms), bottom=bottoms, facecolor='w', edgecolor='k', linestyle='-')
+    plt.bar(range(3), np.array(tops)-np.array(bottoms), bottom=bottoms, facecolor='w', edgecolor='k', linestyle='-')
     for i, m in enumerate(medians):
         # enumerate allows you to loop through an iterable with access to the index and element itself
         plt.plot([i-0.4, i+0.4], [m, m], c='k', linestyle='--', linewidth=1)
         
-    plt.ylim(bottom=0)
+    plt.ylim(bottom=0.9, top=1.9)
     # sets max and min of y-axis
-    plt.yticks(range(10))
+    plt.yticks([1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8])
     # forces y-axis to show a labelled tick mark at every whole number in the range 
     plt.hlines(1,-1, 10, linestyles='--', linewidth=0.5)
     # plots horizontal line at y=1 from x=-1 to x=10. y=1 is showing wild-type.
-    plt.xlim([-0.5, 0.5])
+    plt.xlim([-0.5, 2.5])
     # sets max and min of x-axis
     
     # TODO: Change these axis ranges to be suitable for TP53 
@@ -84,21 +84,22 @@ def plot_results(all_results):
     plt.tight_layout()
     # measures what is currently in the figure and adjusts internal spacing
     
-    plt.xticks(range(1), ['All 6 timepoints (Weeks 1.5, 3, 6, 12, 24, 52)'])
-    plt.savefig('docs/fitting_results_all6.png', dpi=150, bbox_inches='tight')
+    plt.xticks(range(3), ['First 2 Timepoints (Weeks 1.5, 3)','First 3 Timepoints (Weeks 1.5, 3, 6)', 
+                          'All 6 timepoints (Weeks 1.5, 3, 6, 12, 24, 52)'])
+    plt.savefig('docs/combined_fitting_results.png', dpi=150, bbox_inches='tight')
     plt.show()
     
     # TODO: Add something which saves graph to files 
     
 def main():
     # Setting up databases
-    '''
-     db_path_first2 = "sqlite:///" + "TP53First2_pyabc.db"
+    
+    db_path_first2 = "sqlite:///" + "TP53First2_pyabc.db"
     # tells the next line where to open
-     hist_first2 = History(db_path_first2)
+    hist_first2 = History(db_path_first2)
     # creates an object in the class History (part of pyabc)
     # it is an object storing everything about the data file excel_sheet
-     df_first2, w_first2 = hist_first2.get_distribution(m=0)
+    df_first2, w_first2 = hist_first2.get_distribution(m=0)
     # hist_first is an object, get_distribution is a function you can run on it.
     # m is model index, so this asks for model 0 (WF2D)
     FIRST2_PARAMS = get_inferred_fit(df_first2, w_first2)
@@ -110,7 +111,7 @@ def main():
     df_first3, w_first3 = hist_first3.get_distribution(m=0)
     FIRST3_PARAMS = get_inferred_fit(df_first3, w_first3)
     # creates file for the first 3 timepoints
-    '''
+   
     db_path_all = "sqlite:///" + "TP53_All6_Averaged_pyabc.db"
     hist_all = History(db_path_all)
     df_all, w_all = hist_all.get_distribution(m=0)
@@ -118,7 +119,8 @@ def main():
     # creates file for all timepoints
     
     
-    all_results = OrderedDict([('TP53All', (df_all, w_all))])
+    all_results = OrderedDict([('TP53First2', (df_first2, w_first2)),('TP53First3',(df_first3, w_first3)),
+                               ('TP53All', (df_all, w_all))])
     # Creates list of tuples containing the data sets. OrderedDict preserves the order that key-value pairs (items)
     # are stored in the dictionary
     plot_results(all_results)
