@@ -30,19 +30,22 @@ class WFLinearFitness(WF):
       current_time = self.i / self.division_rate
       for clone_id in range(1, len(self.clones_array)):
          starting_fitness = self.initial_fitness_array[clone_id]
-         self.clones_array[clone_id, self.fitness_idx] = max(starting_fitness - self.slopes[clone_id] * current_time, 0.01)
+         self.clones_array[clone_id, self.fitness_idx] = max(starting_fitness - self.slopes[clone_id] * current_time, 0.01) # Ensures we do not go below 0.01
       
       # self.clones_array is the table listing id, label, fitness, generation, parent id. This line updates the fitness of the 
-      # second clone (only, as the other is wild-type) based on the linear function.
+      # other clones (only, as the other is wild-type) based on the linear function.
       return super().get_next_generation(current_data) 
       # Returns the next generation of cells based on the current data and the updated fitness values.
 
-np.random.seed(28)
+# TODO: Do we need both __init__ and get_next_gen? Can we do it all in just one of the functions?
+
+
+np.random.seed(28) # could start with anything
 n_clones = 100     # number of clones in the initial population
 mean_fitness = 1.3 # mean of the initial fitness values for the clones
-std_fitness = 0.1 # standard deviation of the fitness values 
+std_fitness = 0.1 # standard deviation of the fitness values (up for changing?)
 
-mutant_fitnesses = np.random.normal(loc=mean_fitness, scale=std_fitness, size=n_clones - 1) # Draws samples from a normal distribution 
+mutant_fitnesses = np.random.normal(loc=mean_fitness, scale=std_fitness, size=n_clones - 1) # Draws n-1 samples from a normal distribution 
 mutant_fitnesses = np.clip(mutant_fitnesses, 1.01, None) # Rounds any fitness values outside the bounds to the interval edges.
                                                          # This specifically ensures that all fitness values are above 1.01, and None gives no ceiling
 fitness_array = np.concatenate([[1], mutant_fitnesses]) # Joins the wild-type fitness value of 1 with the 99 mutant fitness values into a single array
@@ -60,7 +63,7 @@ sim = WFLinearFitness(params)
 
 sim.run_sim()
 sim.muller_plot(figsize=(5, 5))
-plt.title("WF Competition Between One Wild-Type Clone (1 cell) and 99 Fitter Clones of Linearly Decreasing Fitness")
+plt.title("WF Competition Between One Wild-Type Cell and 99 Fitter Cells of Linearly Decreasing Fitness")
 # Changed the above to include more clones in the initial population.
 plt.xlabel("Time")
 plt.ylabel("Clone Size")
@@ -77,7 +80,6 @@ plt.savefig(os.path.join(docs_dir, 'survivial_wf_linear100clones.png'), dpi=150,
 sim.plot_mean_clone_size_graph_for_non_mutation()
 plt.savefig(os.path.join(docs_dir, 'meanclonesize_wf_linear100clones.png'), dpi=150, bbox_inches='tight')
 # Adding in a plot of the mean clone size for the non-mutation case.
-# To make this worthwhile, we will increase the number of clones in the initial population.
 
 
 plt.show()
