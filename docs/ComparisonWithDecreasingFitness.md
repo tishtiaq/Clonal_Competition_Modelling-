@@ -13,12 +13,17 @@
 
 # Plots showing the comparison of clone survival rate between a simulation using linearly decreasing fitness and one which has constant fitness
 
-| No. of clones | Clone Survival Plot | Time Steps |
+| No. of clones | Percentage of Wild-Types | Clone Survival Plot | Time Steps |
 |---|---|---|
-| 10000 | ![](/docs/survival_comparison_constant_vs_linear.png)  |  100    |
-| 10000 | ![](/docs/time1000_survival_comparison.png)            |  1000   |
+| 10000 |   0.1     |     ![](/docs/survival_comparison_constant_vs_linear.png)  |  100    |
+| 10000 |   0.1     |     ![](/docs/time1000_survival_comparison.png)            |  1000   |
+| 10000 |   1.0     |     ![](/docs/1%wild_survival_comparison.png)              |  1000   |
 
+| 10000 |   10.0    |     ![]()          |  1000   |
+| 10000 |   50.0    |     ![]()          |  1000   |
 
 # Spatial Plots (using WF2D)
 
+| Constant Fitness? | No. of clones | Muller Plot | Clone Survival | Mean Clone Size | Mean Fitness and SD |
+|---|---|---|---|---|---|
 
