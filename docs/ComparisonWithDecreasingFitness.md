@@ -17,6 +17,6 @@
 
 | No. of clones | Clone Survival Comparison Plot | Mean Fitness and SD |
 |---|---|---|
-| 10000 | ![](docs/survival_comparison_constant_vs_linear.png)  |   1.3, 0.1   |
+| 10000 | ![](/docs/survival_comparison_constant_vs_linear.png)  |   1.3, 0.1   |
 
 
