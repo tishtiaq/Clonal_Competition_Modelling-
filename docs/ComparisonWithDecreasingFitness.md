@@ -11,8 +11,7 @@
 | No  |  10000 | ![](/docs/muller_wf_linear10000clones.png)   | ![](/docs/survival_wf_linear10000clones.png)     |  ![](/docs/meanclonesize_wf_linear10000clones.png)   |  1.3, 0.1      |
 
 
-# Plots showing the comparison of clone survival rate between a simulation using linearly decreasing fitness and one which has constant
-# fitness
+# Plots showing the comparison of clone survival rate between a simulation using linearly decreasing fitness and one which has constant fitness
 
 | No. of clones | Clone Survival Plot | Mean Fitness and SD |
 |---|---|---|
