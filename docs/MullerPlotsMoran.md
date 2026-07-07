@@ -12,3 +12,6 @@ This is using a Moran simulation.
 | 250 | 750 | Exponential | ![](moran_muller_exponential_250_750.png) |
 | 750 | 250 | Linear      | ![](moran_muller_linear_750_250.png)      |
 | 750 | 250 | Exponential | ![](moran_muller_exponential_750_250.png) |
+
+THIS IS FUNDAMENTALLY INCORRECT: I HAVEN'T YET WRITTEN CODE TO SIMULATE MORAN (NEED TO OVERRIDE 2 FUNCTIONS)
+
