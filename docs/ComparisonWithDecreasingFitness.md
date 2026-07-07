@@ -8,9 +8,11 @@
 | Yes | 100  | ![](/docs/muller_wf_constant100clones.png)     |    ![](/docs/survival_wf_constant100clones.png)    |  ![](/docs/meanclonesize_wf_constant100clones.png)  |
 | No  | 100  | ![](/docs/muller_wf_linear100clones.png)       |    ![](/docs/survivial_wf_linear100clones.png)     |  ![](/docs/meanclonesize_wf_linear100clones.png)    |      
 
-
-| Yes |      |   |   ![](WF%20Plots%20NonSpatial/LinearPlotsWF/muller_linear_250_750.png)           |    |
-| No  |      |   |   ![](WF%20Plots%20NonSpatial/ExponentialPlotsWF/muller_exponential_250_750.png) |    |
+# Spatial 
+| Constant Fitness? | No. of clones | Muller Plot | Clone Survival | Mean Clone Size |
+|---|---|---|---|---|
+| Yes |  10000    |   |   ![](WF%20Plots%20NonSpatial/LinearPlotsWF/muller_linear_250_750.png)           |    |
+| No  |  10000    |   |   ![](WF%20Plots%20NonSpatial/ExponentialPlotsWF/muller_exponential_250_750.png) |    |
 |     |      |   |   ![](WF%20Plots%20NonSpatial/LinearPlotsWF/muller_linear_750_250.png)           |    |
 |     |      |   |   ![](WF%20Plots%20NonSpatial/ExponentialPlotsWF/muller_exponential_750_250.png) |    |
 
