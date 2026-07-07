@@ -1,7 +1,7 @@
 
 # Table showing constant fitness versus linearly decreasing fitness for 100 clones (1 wild-type, 99 fitter) 
 # Starting fitnesses are selected using a Gaussian distribution
-
+# Non-Spatial
 
 | Constant Fitness? | No. of clones | Muller Plot | Clone Survival | Mean Clone Size |
 |---|---|---|---|---|
