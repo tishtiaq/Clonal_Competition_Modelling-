@@ -18,9 +18,8 @@
 | 10000 |   0.1     |     ![](/docs/survival_comparison_constant_vs_linear.png)  |  100    |
 | 10000 |   0.1     |     ![](/docs/time1000_survival_comparison.png)            |  1000   |
 | 10000 |   1.0     |     ![](/docs/1percent_wild_survival_comparison.png)       |  1000   |
-
-| 10000 |   10.0    |     ![]()          |  1000   |
-| 10000 |   50.0    |     ![]()          |  1000   |
+| 10000 |   10.0    |     ![](/docs/10percent_wild_survival_comparison.png)      |  1000   |
+| 10000 |   50.0    |     ![](/docs/50percent_wild_survival_comparison.png)      |  1000   |
 
 # Spatial Plots (using WF2D)
 
