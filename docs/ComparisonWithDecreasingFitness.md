@@ -1,22 +1,21 @@
 
 # Table showing constant fitness versus linearly decreasing fitness for specified number of clones (and specified number of wild-types)
-# Starting fitnesses are selected using a Gaussian distribution
 
 
 
-# Non-Spatial
+# Non-Spatial: Only two different types of clone in these following simulations (1 wild-type, 1 fitter)
 
 | Total no. of clones | % of wild-types | Fitness of non-wild-type |  Muller Plot  |  Mean Clone Size  | Clone Survival
 |---|---|---|---|---|---|
 | 10000  |   50    |    1.3    |  ![](/docs/50percent_muller_comparison_wf.png)   |   ![](50percent_size_comparison_wf.png)   |  ![](50percent_survival_comparison_wf.png)  |
 | 10000  |   10    |    1.3    |  ![](/docs/10percent_muller_comparison_wf.png)   |   ![](10percent_size_comparison_wf.png)   |  ![](10percent_survival_comparison_wf.png)  |
 | 10000  |   1.0   |    1.3    |  ![](/docs/)    |   ![]   |  ![]  |
-| 10000  |   0.1   |    1.3    |  ![](/docs/)    |   ![]   |  ![]  |
 
 
 
 
 
+# Starting fitnesses are selected using a Gaussian distribution
 
 | Constant Fitness? | No. of clones | Muller Plot | Clone Survival | Mean Clone Size | Mean Fitness and SD |
 |---|---|---|---|---|---|
