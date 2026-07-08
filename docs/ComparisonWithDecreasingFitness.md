@@ -3,7 +3,7 @@
 
 
 
-# Non-Spatial: Only two different types of clone in these following simulations (1 wild-type, 1 fitter)
+# Non-Spatial Wright-Fisher: Only two different types of clone in these following simulations (1 wild-type, 1 fitter)
 
 | Total no. of clones | % of wild-types | Fitness of non-wild-type |  Muller Plot  |  Mean Clone Size  | Clone Survival
 |---|---|---|---|---|---|
