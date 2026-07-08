@@ -5,6 +5,10 @@
 # This function always finishes with a fitness of 1, yet takes different starting values. The slope is calculated 
 # based on the starting value. 
 
+# I have updated the bottom of the code so that it now plots comparison plots between simulations which uses the linear decay model and simulations which use the old model.
+# The plots show the difference in muller plots, mean clone size and survival rate of clones. You can easily adapt population sizes, ratio of wild-type : higher fitness clones, 
+# and starting fitness values by changing the stored floats in the code where labelled. 
+
 import matplotlib.pyplot as plt
 import numpy as np
 from clone_competition_simulation import (WF, Moran, Parameters, FitnessParameters, TimeParameters,
@@ -38,56 +42,52 @@ class WFLinearFitness(WF):
 params = Parameters(
     algorithm="WF", 
     times=TimeParameters(max_time=10, division_rate=1), 
-    population=PopulationParameters(initial_size_array=np.array([750, 250])),
-    fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.5])),
+    population=PopulationParameters(initial_size_array=np.array([5000, 5000])), # Change ratio of wild-type : higher fitness HERE
+    fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.3])), # Change fitness of fitter clone HERE
 )
-    # Pass the parameters to the custom class
-sim = WFLinearFitness(params, a_intercept=1.5)
-# These exact numbers ensure we finish with a fitness of 1 for this starting fitness of 1.5
-
-sim.run_sim()
-sim.muller_plot(figsize=(5, 5))
-plt.title("Competition Between One Wild-Type Clone and One Fitter Clone of Linearly Decreasing Fitness")
-plt.xlabel("Time")
-plt.ylabel("Clone Size")
-
 
 import os
 docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
-plt.savefig(os.path.join(docs_dir, 'wf_muller_linear_750_250.png'), dpi=150, bbox_inches='tight')
+
+
+sim_linear = WFLinearFitness(params, a_intercept=1.3)
+sim_linear.run_sim()
+
+sim_constant = WF(params)
+sim_constant.run_sim()
+
+
+# Below is the Muller Plots side by side
+fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+sim_linear.muller_plot(ax=ax1) # Plot the linear simulation on one side
+ax1.set_title("Linearly Decreasing Fitness")
+sim_constant.muller_plot(ax=ax2) # Plot the constant simulation on the other side
+ax2.set_title("Constant Fitness")
+fig1.suptitle("Muller Plots")
+plt.savefig(os.path.join(docs_dir, '50percent_muller_comparison_wf.png'), dpi=150, bbox_inches='tight')
+
+
+# Plot Mean Clone Sizes
+fig2, (ax3, ax4) = plt.subplots(1, 2, figsize=(12, 5))
+sim_linear.plot_mean_clone_size_graph_for_non_mutation(ax=ax3)
+ax3.set_title("Linearly Decreasing Fitness")
+sim_constant.plot_mean_clone_size_graph_for_non_mutation(ax=ax4)
+ax4.set_title("Constant Fitness")
+fig2.suptitle("Mean Clone Size")
+plt.savefig(os.path.join(docs_dir, '50percent_size_comparison_wf.png'), dpi=150, bbox_inches='tight')
+
+
+# Plot Survival Rate on the same graph 
+fig, ax = plt.subplots(figsize=(8, 5))  # creates 1 figure with two graphs
+sim_constant.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Constant Fitness')
+sim_linear.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Linearly Decreasing Fitness') 
+
+ax.legend()
+plt.title("Survival Comparison: Constant vs Linearly Decreasing Fitness")
+plt.tight_layout
+
+plt.savefig(os.path.join(docs_dir, '50percent_survival_comparison_wf.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()
-# print("Final fitness of the second clone:", sim.clones_array[1, sim.fitness_idx])
-
-# TODO: Add calculation of total mutant takeover/ VAF
-
-
-
-'''
-    p = Parameters(
-        algorithm='WF', 
-        times=TimeParameters(max_time=10, division_rate=1), 
-        population=PopulationParameters(initial_size_array=[500, 500]),  # Start with equal clone sizes
-        fitness=FitnessParameters(initial_fitness_array=[1, 1.5]),  # The second clone is fitter than the first (at the start)
-        treatment=TreatmentParameters(
-            # Define the treatment. 
-            treatment_timings=[4],  # Start the treatment at time 4
-            treatment_effects=[
-                [1, 0.5]  # One value per initial clone. 
-            ],  
-            treatment_replace_fitness=False   # The `treatment_effects` will multiply the fitness, rather than replace it 
-            # (if we were to write True instead)
-        )
-    ) This is old fitness code. 
-    '''
-
-
-
-
-
-
-
-
-
 
