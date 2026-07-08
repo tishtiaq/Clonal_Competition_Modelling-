@@ -84,12 +84,8 @@ def plot_results(all_results):
     plt.tight_layout()
     # measures what is currently in the figure and adjusts internal spacing
     
-<<<<<<< Updated upstream
     plt.xticks(range(3), ['First 2 Timepoints (Weeks 1.5, 3)','First 3 Timepoints (Weeks 1.5, 3, 6)', 
                           'All 6 timepoints (Weeks 1.5, 3, 6, 12, 24, 52)'])
-=======
-    plt.xticks(range(3), ['First 2 Timepoints (Weeks 1.5, 3)', 'First 3 Timepoints (Weeks 1.5, 3, 6)', 'All 6 timepoints (Weeks 1.5, 3, 6, 12, 24, 52)'])
->>>>>>> Stashed changes
     plt.savefig('docs/combined_fitting_results.png', dpi=150, bbox_inches='tight')
     plt.show()
     
@@ -115,11 +111,7 @@ def main():
     df_first3, w_first3 = hist_first3.get_distribution(m=0)
     FIRST3_PARAMS = get_inferred_fit(df_first3, w_first3)
     # creates file for the first 3 timepoints
-<<<<<<< Updated upstream
    
-=======
-    
->>>>>>> Stashed changes
     db_path_all = "sqlite:///" + "TP53_All6_Averaged_pyabc.db"
     hist_all = History(db_path_all)
     df_all, w_all = hist_all.get_distribution(m=0)
@@ -127,12 +119,8 @@ def main():
     # creates file for all timepoints
     
     
-<<<<<<< Updated upstream
     all_results = OrderedDict([('TP53First2', (df_first2, w_first2)),('TP53First3',(df_first3, w_first3)),
                                ('TP53All', (df_all, w_all))])
-=======
-    all_results = OrderedDict([('TP53First2', (df_first2, w_first2)), ('TP53First3', (df_first3, w_first3)), ('TP53All', (df_all, w_all))])
->>>>>>> Stashed changes
     # Creates list of tuples containing the data sets. OrderedDict preserves the order that key-value pairs (items)
     # are stored in the dictionary
     plot_results(all_results)

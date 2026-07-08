@@ -20,12 +20,12 @@ n_clones = 10000     # number of clones in the initial population
 mean_fitness = 1.3 # mean of the initial fitness values for the clones
 std_fitness = 0.1 # standard deviation of the fitness values (up for changing?)
 
-mutant_fitnesses = np.random.normal(loc=mean_fitness, scale=std_fitness, size=int(n_clones * 0.99)) # Draws 99% of the total population from a normal distribution: leaves 1% wild-type
+mutant_fitnesses = np.random.normal(loc=mean_fitness, scale=std_fitness, size=int(n_clones * 0.50)) # Draws 50% of the total population from a normal distribution: leaves 50% wild-type
 mutant_fitnesses = np.clip(mutant_fitnesses, 1.01, None) # Rounds any fitness values outside the bounds to the interval edges.
                                                          # This specifically ensures that all fitness values are above 1.01, and None gives no ceiling
 fitness_array = np.concatenate([[1], mutant_fitnesses]) # Joins the wild-type fitness value of 1 with the 99 mutant fitness values into a single array
-n_wildtype_cells = int(n_clones * 0.01) # Define how many wild-type cells we want to start with (as a percentage of total cells)
-size_array = np.concatenate([[n_wildtype_cells], np.ones(int(n_clones * 0.99), dtype=int)]) # Means that each clone starts with 1 cell
+n_wildtype_cells = int(n_clones * 0.5) # Define how many wild-type cells we want to start with (as a percentage of total cells)
+size_array = np.concatenate([[n_wildtype_cells], np.ones(int(n_clones * 0.50), dtype=int)]) # Means that each clone starts with 1 cell
 
 
 params = Parameters(
@@ -58,6 +58,6 @@ plt.tight_layout
 
 
 docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
-plt.savefig(os.path.join(docs_dir, '1percent_wild_survival_comparison.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '50percent_wild_survival_comparison.png'), dpi=150, bbox_inches='tight')
 plt.show()
 

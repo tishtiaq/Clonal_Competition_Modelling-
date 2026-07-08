@@ -42,8 +42,8 @@ class WFLinearFitness(WF):
 params = Parameters(
     algorithm="WF", 
     times=TimeParameters(max_time=10, division_rate=1), 
-    population=PopulationParameters(initial_size_array=np.array([5000, 5000])), # Change ratio of wild-type : higher fitness HERE
-    fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.3])), # Change fitness of fitter clone HERE
+    population=PopulationParameters(initial_size_array=np.array([1000, 9000])), # Change ratio of wild-type : higher fitness HERE
+    fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.05])) # Change fitness of fitter clone HERE
 )
 
 import os
@@ -64,7 +64,7 @@ ax1.set_title("Linearly Decreasing Fitness")
 sim_constant.muller_plot(ax=ax2) # Plot the constant simulation on the other side
 ax2.set_title("Constant Fitness")
 fig1.suptitle("Muller Plots")
-plt.savefig(os.path.join(docs_dir, '50percent_muller_comparison_wf.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '10percent_1.05_muller_comparison_wf.png'), dpi=150, bbox_inches='tight')
 
 
 # Plot Mean Clone Sizes
@@ -74,20 +74,17 @@ ax3.set_title("Linearly Decreasing Fitness")
 sim_constant.plot_mean_clone_size_graph_for_non_mutation(ax=ax4)
 ax4.set_title("Constant Fitness")
 fig2.suptitle("Mean Clone Size")
-plt.savefig(os.path.join(docs_dir, '50percent_size_comparison_wf.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '10percent_1.05_size_comparison_wf.png'), dpi=150, bbox_inches='tight')
 
 
 # Plot Survival Rate on the same graph 
 fig, ax = plt.subplots(figsize=(8, 5))  # creates 1 figure with two graphs
 sim_constant.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Constant Fitness')
 sim_linear.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Linearly Decreasing Fitness') 
-
 ax.legend()
 plt.title("Survival Comparison: Constant vs Linearly Decreasing Fitness")
 plt.tight_layout
-
-plt.savefig(os.path.join(docs_dir, '50percent_survival_comparison_wf.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '10percent_1.05_survival_comparison_wf.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()
-

@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt  
 
-class LinearFitness2D(WF2D):
+class WFLinearFitness2D(WF2D):
     def __init__(self, parameters, a_intercept):
         b_slope = (a_intercept - 1) / 100
         self.slope = b_slope
@@ -34,7 +34,7 @@ params = Parameters(
 )
         
 
-sim = LinearFitness2D(params, a_intercept=1.5)
+sim = WFLinearFitness2D(params, a_intercept=1.5)
 sim.run_sim()
 sim.muller_plot(figsize=(5, 5))
 
