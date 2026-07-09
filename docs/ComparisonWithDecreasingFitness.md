@@ -30,16 +30,6 @@
 | 10000  |   10    |    1.05     |  ![](/docs/10percent_1.05_muller_comparison_moran.png)    |   ![](10percent_1.05_size_comparison_moran.png)    |  ![](10percent_1.05_survival_comparison_moran.png)     |
 
 
-# Non-Neutral Simulations: Modelling the difference between a large clone of wild-types and a variety of non-neutral single-cell clones, all of the same fitness. In the two simulations, we show the difference between non-neutral clones which hold a constant fitness and those which have linearly decreasing fitness (ending the simulation at a wild-type  fitness of 1)
-
-| Total cells | No. of cells in wild-type clone | No. of non-neutral cells | Fitness of non-neutral cells | Muller Plot | Mean Clone Size | Clone Survival |
-|---|---|---|---|---|---|---| 
-| 10000 |     9950      |    50    |     1.3     |  ![](/docs/9950v50_1.3_muller_comparison_wf.png)     |  ![](/docs/9950v50_1.3_size_comparison_wf.png)   |   ![](/docs/9950v50_1.3_survival_comparison_wf.png)   | 
-
-
-
-
-
 
 
 # Starting fitnesses are selected using a Gaussian distribution
