@@ -10,4 +10,7 @@
 | 10000 |     9900      |    100   |     1.05     |  ![](/docs/9900v100_1.05_muller_comparison_wf.png)    |  ![](/docs/9900v100_1.05_size_comparison_wf.png)  |   ![](/docs/9900v100_1.05_survival_comparison_wf.png)  | 
 
 
+| Total cells | No. of cells in wild-type clone | No. of non-neutral cells | Fitness of non-neutral cells | Muller Plot | Spatial Grid | 
+|---|---|---|---|---|---|
+| 100 |   50   |   50  |   1.3   |    ![](WF2D_1.3_muller_comparison.png)    |    ![](WF2D_1.3_spatial_comparison.png)   |
 
