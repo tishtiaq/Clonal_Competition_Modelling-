@@ -183,7 +183,7 @@ if __name__ == "__main__":
 # Sets up initial beliefs about the data to apply ABC on (gives
 # very wide initial berth. RV is imported from pyabc.)
 
-    DATA_FILE = "41467_2022_33945_MOESM5_ESM.xlsx"
+    DATA_FILE = "data/41467_2022_33945_MOESM5_ESM.xlsx"
     # load the data file
     times = np.array([7*i for i in [1.5, 3, 6, 12, 24, 52]])          
     # Multiplying by 7 gives us the timepoints in days instead
