@@ -155,7 +155,7 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
 # Runs simulation up to 50 times, takes average of each timepoint.
 # This bit of code was changed from the initial to average the 
 # timepoints instead of taking just the final one of 50
-    
+        takeover = np.mean(full_results, axis=0)
         if return_takeover:
             return transformBySampling(takeover, samplesPerTimepoint)
         

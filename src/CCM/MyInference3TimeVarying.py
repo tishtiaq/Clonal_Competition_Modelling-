@@ -162,7 +162,7 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
 # Runs simulation up to 50 times, takes average of each timepoint.
 # This bit of code was changed from the initial to average the 
 # timepoints instead of taking just the final one of 50
-    
+        takeover = np.mean(full_results, axis=0)
         if return_takeover:
             return transformBySampling(takeover, samplesPerTimepoint)
         
@@ -225,7 +225,7 @@ if __name__ == "__main__":
     db_path_first3 = ("sqlite:///" + "TP53First3_TimeVarying"+'_pyabc.db')
     # constructs address of where the database should live
     
-    r = abc.load(db_path_first3)
+    r = abc.new(db_path_first3)
     # creates new database file. {'distance': 0} tells pyabc 
     # what the data looks like, in the same shape that run_sim
     # returns its results in
