@@ -225,7 +225,7 @@ if __name__ == "__main__":
     db_path_first3 = ("sqlite:///" + "TP53First3_TimeVarying"+'_pyabc.db')
     # constructs address of where the database should live
     
-    r = abc.new(db_path_first3)
+    r = abc.new(db_path_first3, {'distance': 0})
     # creates new database file. {'distance': 0} tells pyabc 
     # what the data looks like, in the same shape that run_sim
     # returns its results in
