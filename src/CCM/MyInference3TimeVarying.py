@@ -27,7 +27,7 @@ from clone_competition_simulation.parameters import Parameters
 import pyabc.visualization.credible as credible
 import sys
 
-from WFLinearFitness2D import WFLinearFitness2D
+from WFLinearFitness2D import LinearFitness2D
 from clone_competition_simulation import WF2D
 
 from clone_competition_simulation.parameters import (Parameters, 
@@ -154,7 +154,7 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
         full_results = []
 # We removed the if here
         for loop in range(LOOP_LIMITS):
-           s = WFLinearFitness2D(p, a_intercept=a_intercept)
+           s = LinearFitness2D(p, a_intercept=a_intercept)
            s.slope = b_slope  # override the auto-derived slope with the ABC-proposed one
            s.run_sim()
            full_results.append(get_mutant_takeover(s))
