@@ -14,7 +14,7 @@ Using WF algorithm:
 |---|---|---|---|---|---|
 | 100 |   50   |   50  |   1.3   |    ![](WF2D_1.3_muller_comparison.png)    |   ![](WF2D_1.3_spatial_comparison.png)    |
 | 100 |   50   |   50  |   1.15  |    ![](WF2D_1.15_muller_comparison.png)   |   ![](WF2D_1.15_spatial_comparison.png)   |
-
+| 100 |   50   |   50  |   1.05  |    ![](WF2D_1.05_muller_comparison.png)   |   ![](WF2D_1.05_spatial_comparison.png)   |
 
 Using Moran algorithm: 
 
