@@ -204,7 +204,7 @@ if __name__ == "__main__":
     # number of mice sampled at each timepoint
     distance = PNormDistance()
     # tells pyabc to interpret what its been given as a distance
-    sampler = MulticoreEvalParallelSampler()
+    sampler = SingleCoreSampler()
     # tells pyabc to split up parameter guesses across machine
     # and run tests simulataneously
     
