@@ -23,6 +23,7 @@ import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from WFLinearFitness2D import LinearFitness2D
+from WF2DExponentialFitness import WFExponentialFitness2D
 # Added import of LinearFitness custom class
 
 # Silence the progress bar — must use the module reference directly
@@ -136,7 +137,7 @@ def get_sim_mean_pl(parameters, target_data):
         sim_results = []
         for loop in range(LOOP_LIMITS):
             if decay>0 :
-                s = LinearFitness2D(p, a_intercept=fitness)
+                s = WFExponentialFitness2D(p, a_intercept=fitness)
                 s.slope = decay
             else:
                 s = p.get_simulator() # Use normal WF2D for when decay=0
@@ -582,7 +583,7 @@ result_3d = pseudoLikelihoodSweep3D(TP53_MEAN,
                                     n=steps_3d)
 # Calls the new pseudoLikelihoodSweep3D function
 
-np.save('result_3d.npy', result_3d) # saves the result as soon as the sweep finishes
+np.save('result_3d_exponential.npy', result_3d) # saves the result as soon as the sweep finishes
 print("3D sweep completed and saved")
 
 best_i, best_j, best_k = np.unravel_index(np.argmax(result_3d), result_3d.shape) # np.argmax finds the highest value in the entire cube. unravel converts it back to 3D coordinates
@@ -618,7 +619,7 @@ ax.set_ylabel('Fitness')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: fitness x induction\n(decay fixed at {best_decay})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'tp53_3d_surface_fit_ind.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_surface_fit_ind.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 
@@ -634,7 +635,7 @@ ax.set_ylabel('Fitness')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: fitness x decay\n(induction fixed at {best_induction})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'tp53_3d_surface_fit_dec.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_surface_fit_dec.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 # Induction X Decay
@@ -649,7 +650,7 @@ ax.set_ylabel('Decay')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: induction x decay\n(fitness fixed at {best_fitness})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'tp53_3d_surface_ind_dec.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_surface_ind_dec.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 TP53 = load_data_tp53(DATA_FILE)
@@ -667,7 +668,43 @@ plt.ylabel('Mutant Takeover Fraction')
 plt.xlabel('Time (days)')
 plt.ylim(bottom=0, top=0.3)
 plt.title(f'Best fit: fitness={best_fitness}, decay={best_decay}')
-plt.savefig(os.path.join(docs_dir, 'tp53_best_fit_3d.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'expo_tp53_best_fit_3d.png'), dpi=150, bbox_inches='tight')
+
+
+# Plotting both best fit lines on the same graph 
+plt.figure(figsize=(8, 5))
+plt.plot(times, tp53_means, label='Line 1', c='blue')
+plt.plot(times, tp53_means_3d, label='Line 2', c='red')
+plt.legend()
+plt.show()
+plt.title('Best fit lines plotted with and without decreasing fitness')
+plt.savefig(os.path.join(docs_dir, 'best_fits_2d_and_3d.png'), dpi=150, bbox_inches='tight')
+
+
+# Want to plot marginals as well:
+prob_3d =  np.exp(result_3d - np.nanmax(result_3d)) # finds largest least -ve value and subtracts so we get a value of 0 for the 
+                                                    # best probability (ensures probability of 1 for the best value since exp(0)=1)
+prob_3d /= prob_3d.sum()                      # normalises so that all values sum to 1
+marginal_fitness = prob_3d.sum(axis=(1,2)) # sums over induction and decay
+marginal_induction = prob_3d.sum(axis=(0,2))  # sums over fitness and decay
+marginal_decay = prob_3d.sum(axis=(0,1))      # sums over fitness and induction
+
+fitness_vals = np.array([fg3*i + fi3 for i in range(steps_3d)])
+induction_vals = np.array([ig3*j + ii3 for j in range(steps_3d)])
+decay_vals = np.array([dg3*k + di3 for k in range(steps_3d)]) # converts grid indices back into parameter values
+
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15,4)) # plot all 3 marginal plots side by side 
+for ax, vals, marginal, label in zip(
+    [ax1, ax2, ax3],
+    [fitness_vals, induction_vals, decay_vals],
+    [marginal_fitness, marginal_induction, marginal_decay],
+    ['Fitness', 'Induction', 'Decay']):
+    ax.plot(vals, marginal)
+    ax.set_xlabel(label)
+    ax.set_title(f'Marginal: {label}')
+ax.set_ylabel("Marginal Probability")
+plt.tight_layout()
+plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_marginals.png'), dpi=150, bbox_inches='tight')
+
 
 plt.show()
-
