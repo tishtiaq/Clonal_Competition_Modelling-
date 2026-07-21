@@ -8,6 +8,7 @@
 # In this file, I have taken the exact code from ProbabilisticFittingResultsTP53 and added in a search for an extra parameter: decay.
 # By adding this parameter we are now searching 3-dimensional space instead of 2D, and we hope that this leads to a better fit. 
 
+# This code currently uses the custom class with Exponentially Decreasing Fitness.
 
 
 import numpy as np
