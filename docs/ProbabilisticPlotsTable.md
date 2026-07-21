@@ -7,3 +7,10 @@
 
 
 ## In the following plots we are using fitness feedbacks
+
+| Heatmap Fitness-Decay | Heatmap Fitness-Induction | Heatmap Induction-Decay | Best Fit Plot | 
+|---|---|---|---|
+| ![](tp53_3d_surface_fit_dec.png) | ![](tp53_3d_surface_fit_ind.png) | ![](tp53_3d_surface_ind_dec.png) | ![](tp53_best_fit_3d.png) | 
+
+
+
