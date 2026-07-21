@@ -137,8 +137,8 @@ def get_sim_mean_pl(parameters, target_data):
         sim_results = []
         for loop in range(LOOP_LIMITS):
             if decay>0 :
-                s = WFExponentialFitness2D(p, a_intercept=fitness)
-                s.slope = decay
+                s = WFExponentialFitness2D(p, a_coefficient=fitness)
+                s.rate = decay
             else:
                 s = p.get_simulator() # Use normal WF2D for when decay=0
             s.run_sim()
@@ -467,8 +467,8 @@ def run_sim(parameters, target_data, return_clone_sizes=False):
         sim_results = []
         for loop in range(LOOP_LIMITS):
             if parameters.get('decay', 0) > 0:
-                s = LinearFitness2D(p, a_intercept=fitness)
-                s.slope = parameters['decay']
+                s = WFExponentialFitness2D(p, a_coefficient=fitness)
+                s.rate = parameters['decay']
             else:
                 s = p.get_simulator()
             s.run_sim()
@@ -678,7 +678,7 @@ plt.plot(times, tp53_means_3d, label='Line 2', c='red')
 plt.legend()
 plt.show()
 plt.title('Best fit lines plotted with and without decreasing fitness')
-plt.savefig(os.path.join(docs_dir, 'best_fits_2d_and_3d.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'expo_best_fits_2d_and_3d.png'), dpi=150, bbox_inches='tight')
 
 
 # Want to plot marginals as well:
@@ -701,8 +701,9 @@ for ax, vals, marginal, label in zip(
     ['Fitness', 'Induction', 'Decay']):
     ax.plot(vals, marginal)
     ax.set_xlabel(label)
+    ax.set_ylabel("Marginal Probability")
     ax.set_title(f'Marginal: {label}')
-ax.set_ylabel("Marginal Probability")
+
 plt.tight_layout()
 plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_marginals.png'), dpi=150, bbox_inches='tight')
 
