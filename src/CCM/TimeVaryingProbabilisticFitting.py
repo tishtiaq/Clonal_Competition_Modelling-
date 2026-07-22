@@ -674,12 +674,16 @@ plt.savefig(os.path.join(docs_dir, 'expo_tp53_best_fit_3d.png'), dpi=150, bbox_i
 
 # Plotting both best fit lines on the same graph 
 plt.figure(figsize=(8, 5))
-plt.plot(times, tp53_means, label='Line 1', c='blue')
-plt.plot(times, tp53_means_3d, label='Line 2', c='red')
+plt.plot(times, tp53_means, label='Without fitness feedbacks', c='blue')
+plt.plot(times, tp53_means_3d, label='With fitness feedbacks', c='red') 
+plot_data(TP53, label='TP53 data', colour='black')
+plt.xlim(left=0)
+plt.ylabel('Mutant Takeover Fraction')
+plt.xlabel('Time (days)')
 plt.legend()
-plt.show()
 plt.title('Best fit lines plotted with and without decreasing fitness')
-plt.savefig(os.path.join(docs_dir, 'expo_best_fits_2d_and_3d.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'expo_best_fits_with_and_without_feedbacks.png'), dpi=150, bbox_inches='tight')
+plt.show()
 
 
 # Want to plot marginals as well:
