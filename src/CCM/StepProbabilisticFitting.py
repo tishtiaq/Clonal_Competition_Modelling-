@@ -418,7 +418,7 @@ def plot_marginals(ci_result, filename=None):
     plt.show()
 
 
-plot_marginals(ci_tp53, filename=os.path.join(docs_dir, 'step_sim_tp53_marginals_coarse.png'))   # Saving plot to docs
+plot_marginals(ci_tp53, filename=os.path.join(docs_dir, '0-50_step_sim_tp53_marginals_coarse.png'))   # Saving plot to docs
 
 
 # # Look in the area of the peak specifically for a better distribution
@@ -434,10 +434,10 @@ likelihood_heatmap(result_tp53_tight,ci_tp53["bounds"]["fitnessRange"],ci_tp53["
 
 ci_tp53_tight = get_95ci(result_tp53_tight,ci_tp53["bounds"]["fitnessRange"],ci_tp53["bounds"]["inductionRange"],steps)
 
-plot_marginals(ci_tp53_tight, filename=os.path.join(docs_dir, 'step_sim_tp53_marginals_tight.png'))
+plot_marginals(ci_tp53_tight, filename=os.path.join(docs_dir, '0-50_step_sim_tp53_marginals_tight.png'))
 
 import pickle 
-np.save('step_sim_result_tp53_tight.npy', result_tp53_tight)
+np.save('0-50_step_sim_result_tp53_tight.npy', result_tp53_tight)
 with open('ci_tp53_tight.pkl', 'wb') as f:
     pickle.dump(ci_tp53_tight, f)
 
@@ -570,7 +570,7 @@ plt.ylabel('Mutant Takeover Fraction')
 plt.xlabel('Time (days)')
 plt.ylim(bottom=0, top=0.3)
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'step_sim_tp53_best_fit.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_tp53_best_fit.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 # Now we add in the 3 dimensional grid search:
@@ -585,7 +585,7 @@ result_3d = pseudoLikelihoodSweep3D(TP53_MEAN,
                                     n=steps_3d)
 # Calls the new pseudoLikelihoodSweep3D function
 
-np.save('step_sim_result_3d.npy', result_3d) # saves the result as soon as the sweep finishes
+np.save('0-50_step_sim_result_3d.npy', result_3d) # saves the result as soon as the sweep finishes
 print("3D sweep completed and saved")
 
 best_i, best_j, best_k = np.unravel_index(np.argmax(result_3d), result_3d.shape) # np.argmax finds the highest value in the entire cube. unravel converts it back to 3D coordinates
@@ -621,7 +621,7 @@ ax.set_ylabel('Fitness')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: fitness x induction\n(decay fixed at {best_decay})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'step_sim_tp53_3d_surface_fit_ind.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_tp53_3d_surface_fit_ind.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 
@@ -637,7 +637,7 @@ ax.set_ylabel('Fitness')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: fitness x decay\n(induction fixed at {best_induction})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'step_sim_tp53_3d_surface_fit_dec.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_tp53_3d_surface_fit_dec.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 # Induction X Decay
@@ -652,7 +652,7 @@ ax.set_ylabel('Decay')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: induction x decay\n(fitness fixed at {best_fitness})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'step_sim_tp53_3d_surface_ind_dec.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_tp53_3d_surface_ind_dec.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 TP53 = load_data_tp53(DATA_FILE)
@@ -670,7 +670,7 @@ plt.ylabel('Mutant Takeover Fraction')
 plt.xlabel('Time (days)')
 plt.ylim(bottom=0, top=0.3)
 plt.title(f'Best fit: fitness={best_fitness}, decay={best_decay}')
-plt.savefig(os.path.join(docs_dir, 'step_sim_tp53_best_fit_3d.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_tp53_best_fit_3d.png'), dpi=150, bbox_inches='tight')
 
 
 # Plotting both best fit lines on the same graph 
@@ -683,7 +683,7 @@ plt.ylabel('Mutant Takeover Fraction')
 plt.xlabel('Time (days)')
 plt.legend()
 plt.title('Best fit lines plotted with and without decreasing fitness')
-plt.savefig(os.path.join(docs_dir, 'step_sim_best_fits_with_and_without_feedbacks.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_best_fits_with_and_without_feedbacks.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 
@@ -711,7 +711,7 @@ for ax, vals, marginal, label in zip(
     ax.set_title(f'Marginal: {label}')
 
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'step_sim_tp53_3d_marginals.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '0-50_step_sim_tp53_3d_marginals.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()
