@@ -2,7 +2,10 @@
 
 # Previously, we have seen that the simulation in the file ProbabilisticFittingResultsTP53 fits the early timepoints well, 
 # but not the later timepoints.
-# In this file, I have taken the exact code from ProbabilisticFittingResultsTP53 and added in a search for an extra parameter: decay.
+# In this file, I have taken the exact code from ProbabilisticFittingResultsTP53 and added in a search for an extra parameter: t_time:
+# t_time is the time in the simulation at which the fitness function drops from the starting fitness to neutral fitness. In the code
+# the t_time is referred to as decay just because that was what the code was set up for initially.
+
 # By adding this parameter we are now searching 3-dimensional space instead of 2D, and we hope that this leads to a better fit. 
 
 # This code currently uses the custom class with Step Fitness.
@@ -572,7 +575,7 @@ plt.show()
 
 # Now we add in the 3 dimensional grid search:
 
-decayRange = (50, 350)
+decayRange = (0, 50) # Ben asked me to change the decay range to search these points instead.  
 steps_3d = 10
 
 result_3d = pseudoLikelihoodSweep3D(TP53_MEAN,
@@ -582,7 +585,7 @@ result_3d = pseudoLikelihoodSweep3D(TP53_MEAN,
                                     n=steps_3d)
 # Calls the new pseudoLikelihoodSweep3D function
 
-np.save('step_sim_result_3d_exponential.npy', result_3d) # saves the result as soon as the sweep finishes
+np.save('step_sim_result_3d.npy', result_3d) # saves the result as soon as the sweep finishes
 print("3D sweep completed and saved")
 
 best_i, best_j, best_k = np.unravel_index(np.argmax(result_3d), result_3d.shape) # np.argmax finds the highest value in the entire cube. unravel converts it back to 3D coordinates
