@@ -1,6 +1,9 @@
 
-
 # Storing the results and plots from the exponential, linear and step function runs
+
+Using the grid search sweep algorithm to find fitness and induction ONLY, we have shown that this results in a bad fit for the TP53 mouse data. In the following simulations, we have added in the search for an extra variable besides just fitness and induction. In the step function, we search for a time at which the fitness drops immediately from its starting value to neutral. In exponential, we search for a value for the exponential coefficient of fitness and in the linear function, we search for a value for the linear coefficient of fitness.
+
+In each of the sections below you can see how these additional searches have sometimes improved the fit of the simulation to the real data points, and how sometimes it has not. You can see the probability distributions we have found for the different parameters, and both 2D and 3D plots showing heatmaps for maximum likelihood for the parameters. 
 
 
 ## Step Function Simulation
@@ -12,6 +15,16 @@
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals coarse 2d | marginals tight 2d | marginals 3d | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec |
 |---|---|---|---|---|---|---|---|---|
 | ![](step_sim_tp53_best_fit.png)| ![](expo_tp53_best_fit_3d.png) | ![](expo_best_fits_with_and_without_feedbacks.png) | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](expo_tp53_3d_marginals.png) | ![](expo_tp53_3d_surface_fit_ind.png) | ![](expo_tp53_3d_surface_fit_dec.png) | ![](expo_tp53_3d_surface_ind_dec.png) |
+
+## Linear Function Simulation 
+| best fit w/o feedbacks | best fit with feedbacks | heatmap loglikelihood tight | heatmap probability tight | marginals coarse 2d | marginals tight 2d | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec |
+|---|---|---|---|---|---|---|---|---|
+| ![](tp53_best_fit.png)| ![](tp53_best_fit_3d.png) |  ![](tp53_heatmap_tight_loglik.png)  |  ![](tp53_heatmap_tight_prob.png)  | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](tp53_3d_surface_fit_ind.png) | ![](tp53_3d_surface_fit_dec.png) | ![](tp53_3d_surface_ind_dec.png) |
+
+Note how similar ALL the linear and exponential plots actually are. There really seems hardly any difference at all in which one you choose to use. 
+
+
+TODO: Maybe run using oscillating fitness too?
 
 
 
