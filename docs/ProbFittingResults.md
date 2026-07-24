@@ -17,11 +17,15 @@ In each of the sections below you can see how these additional searches have som
 | ![](step_sim_tp53_best_fit.png)| ![](expo_tp53_best_fit_3d.png) | ![](expo_best_fits_with_and_without_feedbacks.png) | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](expo_tp53_3d_marginals.png) | ![](expo_tp53_3d_surface_fit_ind.png) | ![](expo_tp53_3d_surface_fit_dec.png) | ![](expo_tp53_3d_surface_ind_dec.png) |
 
 ## Linear Function Simulation 
-| best fit w/o feedbacks | best fit with feedbacks | heatmap loglikelihood tight | heatmap probability tight | marginals coarse 2d | marginals tight 2d | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec |
-|---|---|---|---|---|---|---|---|---|
-| ![](tp53_best_fit.png)| ![](tp53_best_fit_3d.png) |  ![](tp53_heatmap_tight_loglik.png)  |  ![](tp53_heatmap_tight_prob.png)  | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](tp53_3d_surface_fit_ind.png) | ![](tp53_3d_surface_fit_dec.png) | ![](tp53_3d_surface_ind_dec.png) |
+| best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec | marginals 3d |
+|---|---|---|---|---|---|---|
+| ![](tp53_best_fit.png)| ![](lin_tp53_best_fit_3d.png) | ![](lin_best_fits_with_and_without_feedbacks.png) | ![](lin_tp53_3d_surface_fit_ind.png) | ![](lin_tp53_3d_surface_fit_dec.png) | ![](lin_tp53_3d_surface_ind_dec.png) | ![](lin_tp53_3d_marginals.png) |
 
-Note how similar ALL the linear and exponential plots actually are. There really seems hardly any difference at all in which one you choose to use. 
+
+## Linear Heatmaps and marginals without using feedbacks:
+| heatmap loglikelihood tight | heatmap probability tight | marginals coarse 2d | marginals tight 2d |
+|---|---|---|---|
+|  ![](tp53_heatmap_tight_loglik.png)  |  ![](tp53_heatmap_tight_prob.png)  | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) |
 
 
 TODO: Maybe run using oscillating fitness too?
