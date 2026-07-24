@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 class WFLinearFitness2D(WF2D):
     def __init__(self, parameters, a_intercept):
-        b_slope = (a_intercept - 1) / 100
+        b_slope = (a_intercept - 1) / parameters.times.max_time
         self.slope = b_slope
         self.intercept = a_intercept
         # Defines the gradient and intercept

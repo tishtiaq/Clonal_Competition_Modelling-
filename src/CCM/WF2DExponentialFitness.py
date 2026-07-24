@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 class WFExponentialFitness2D(WF2D):
     def __init__(self, parameters, a_coefficient):
-        b_rate = (np.log(a_coefficient)) / 10 
+        b_rate = (np.log(a_coefficient)) / parameters.times.max_time
         self.rate = b_rate
         self.coefficient = a_coefficient
         # Defines the starting value and decay rate
