@@ -8,7 +8,9 @@
 # In this file, I have taken the exact code from ProbabilisticFittingResultsTP53 and added in a search for an extra parameter: decay.
 # By adding this parameter we are now searching 3-dimensional space instead of 2D, and we hope that this leads to a better fit. 
 
-# This code currently uses the custom class with Exponentially Decreasing Fitness.
+# This code currently uses the custom class with Linearly Decreasing Fitness. 
+
+# Now I am going to rerun for linearly decreasing fitness, ensuring each search is correct (i.e it is directed towards the )
 
 
 import numpy as np
@@ -23,9 +25,9 @@ from clone_competition_simulation.parameters import Parameters, TimeParameters, 
 import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from WFLinearFitness2D import LinearFitness2D
+
+from WF2DLinearFitness import WFLinearFitness2D # I think this is the correct one
 from WF2DExponentialFitness import WFExponentialFitness2D
-# Added import of LinearFitness custom class
 
 # Silence the progress bar — must use the module reference directly
 import clone_competition_simulation.simulation_algorithms.simulation_loop as sl
@@ -138,8 +140,8 @@ def get_sim_mean_pl(parameters, target_data):
         sim_results = []
         for loop in range(LOOP_LIMITS):
             if decay>0 :
-                s = WFExponentialFitness2D(p, a_coefficient=fitness)
-                s.rate = decay
+                s = WFLinearFitness2D(p, a_intercept=fitness) 
+                s.slope = decay
             else:
                 s = p.get_simulator() # Use normal WF2D for when decay=0
             s.run_sim()
@@ -444,6 +446,7 @@ from scipy.stats import sem
 
 def run_sim(parameters, target_data, return_clone_sizes=False):
     fitness, induction = parameters['fitness'], parameters['induction']
+    decay = parameters.get('decay', 0)
     times = [t for t in target_data]
 
     try:
@@ -467,9 +470,9 @@ def run_sim(parameters, target_data, return_clone_sizes=False):
         
         sim_results = []
         for loop in range(LOOP_LIMITS):
-            if parameters.get('decay', 0) > 0:
-                s = WFExponentialFitness2D(p, a_coefficient=fitness)
-                s.rate = parameters['decay']
+            if decay > 0:
+                s = WFLinearFitness2D(p, a_intercept=fitness)
+                s.slope = parameters['decay']
             else:
                 s = p.get_simulator()
             s.run_sim()
@@ -488,7 +491,7 @@ def run_sim(parameters, target_data, return_clone_sizes=False):
     
     except (Exception, SystemExit) as e:
         print('Error:', e)
-        return ERROR_OBJECT
+        return ERROR_OBJECT 
 
 
 def get_sim_means(parameters, num, data, max_attempts_per_sample=10):
@@ -584,7 +587,7 @@ result_3d = pseudoLikelihoodSweep3D(TP53_MEAN,
                                     n=steps_3d)
 # Calls the new pseudoLikelihoodSweep3D function
 
-np.save('result_3d_exponential.npy', result_3d) # saves the result as soon as the sweep finishes
+np.save('result_3d_linear.npy', result_3d) # saves the result as soon as the sweep finishes
 print("3D sweep completed and saved")
 
 best_i, best_j, best_k = np.unravel_index(np.argmax(result_3d), result_3d.shape) # np.argmax finds the highest value in the entire cube. unravel converts it back to 3D coordinates
@@ -620,7 +623,7 @@ ax.set_ylabel('Fitness')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: fitness x induction\n(decay fixed at {best_decay})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_surface_fit_ind.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'lin_tp53_3d_surface_fit_ind.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 
@@ -636,7 +639,7 @@ ax.set_ylabel('Fitness')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: fitness x decay\n(induction fixed at {best_induction})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_surface_fit_dec.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'lin_tp53_3d_surface_fit_dec.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 # Induction X Decay
@@ -651,7 +654,7 @@ ax.set_ylabel('Decay')
 ax.set_zlabel('Log-likelihood')
 ax.set_title(f'Likelihood surface: induction x decay\n(fitness fixed at {best_fitness})')
 fig.colorbar(surf, shrink=0.5)
-plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_surface_ind_dec.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'lin_tp53_3d_surface_ind_dec.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 TP53 = load_data_tp53(DATA_FILE)
@@ -669,7 +672,7 @@ plt.ylabel('Mutant Takeover Fraction')
 plt.xlabel('Time (days)')
 plt.ylim(bottom=0, top=0.3)
 plt.title(f'Best fit: fitness={best_fitness}, decay={best_decay}')
-plt.savefig(os.path.join(docs_dir, 'expo_tp53_best_fit_3d.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'lin_tp53_best_fit_3d.png'), dpi=150, bbox_inches='tight')
 
 
 # Plotting both best fit lines on the same graph 
@@ -682,7 +685,7 @@ plt.ylabel('Mutant Takeover Fraction')
 plt.xlabel('Time (days)')
 plt.legend()
 plt.title('Best fit lines plotted with and without decreasing fitness')
-plt.savefig(os.path.join(docs_dir, 'expo_best_fits_with_and_without_feedbacks.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'lin_best_fits_with_and_without_feedbacks.png'), dpi=150, bbox_inches='tight')
 plt.show()
 
 
@@ -710,7 +713,9 @@ for ax, vals, marginal, label in zip(
     ax.set_title(f'Marginal: {label}')
 
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'expo_tp53_3d_marginals.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'lin_tp53_3d_marginals.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()
+
+print(f"Best: fitness={best_fitness:.4f}, induction={best_induction:.6f}, decay={best_decay:.6f}")
