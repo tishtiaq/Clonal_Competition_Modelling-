@@ -17,11 +17,13 @@ class WFLinearFitness(WF):
     # Defining a class based on the linear function f(t)=a-bt
     
     def __init__(self, parameters, a_intercept):
-        b_slope = (a_intercept - 1) / 10
+        b_slope = (a_intercept - 1) / parameters.times.max_time
         self.slope = b_slope
         self.intercept = a_intercept
         # Defines the gradient and intercept
         super().__init__(parameters)
+        for i, fitness in enumerate(parameters.fitness.initial_fitness_array):
+            self.clones_array[i, self.fitness_idx] = fitness
 
 # This works when our max_time is 10. If we change the max_time, we will have to change the slope calculation accordingly.
 # Only need to change denominator in slope calculation if we change max_time.
@@ -30,7 +32,7 @@ class WFLinearFitness(WF):
       # This function returns cell counts for the next generation. 
       current_time = self.i / self.division_rate
       new_fitness = self.intercept - self.slope * current_time   # Here we define the operation 
-      self.clones_array[1, self.fitness_idx] = new_fitness
+      self.clones_array[1:, self.fitness_idx] = new_fitness
       # self.clones_array is the table listing id, label, fitness, generation, parent id. This line updates the fitness of the 
       # second clone (only, as the other is wild-type) based on the linear function.
       return super().get_next_generation(current_data) 
