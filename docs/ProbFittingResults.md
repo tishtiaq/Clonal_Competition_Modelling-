@@ -33,6 +33,7 @@ In each of the sections below you can see how these additional searches have som
 | % Wild-type | Fitness of Mutants | Muller Plots | Mean Clone Size | Survival Rate |
 |---|---|---|---|---|
 | 90 | 1.05 |  ![](models_comparison_muller_plot.png)  | ![](models_comparison_mean_clone_size_combined.png) |  ![](models_comparison_survival.png) |
+| 90 | 1.15 |  ![](1.15_models_comparison_muller_plot.png)  | ![](1.15_models_comparison_mean_clone_size_combined.png) |  ![](1.15_models_comparison_survival.png) |
 
 
 
