@@ -38,54 +38,57 @@ class WFStepFitness(WF):
       # second clone (only, as the other is wild-type) based on the linear function.
       return super().get_next_generation(current_data) 
       # Returns the next generation of cells based on the current data and the updated fitness values.
-params = Parameters(
-    algorithm="WF", 
-    times=TimeParameters(max_time=10, division_rate=1), 
-    population=PopulationParameters(initial_size_array=np.array([5000, 5000])), # Change ratio of wild-type : higher fitness HERE
-    fitness=FitnessParameters(initial_fitness_array=np.array([1, 1.05])) # Change fitness of fitter clone HERE
-)
 
-import os
-docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
+if __name__ == "__main__":
 
+   params = Parameters(
+      algorithm="WF", 
+      times=TimeParameters(max_time=100, division_rate=1), 
+      population=PopulationParameters(initial_size_array=np.concatenate([[9000], np.ones(1000, dtype=int)])), # Change ratio of wild-type : higher fitness HERE
+      fitness=FitnessParameters(initial_fitness_array=np.concatenate([[1.0], np.ones(1000)*1.05])) # Change fitness of fitter clone HERE
+   )
 
-sim_step = WFStepFitness(params, a_intercept=1.05, t_time=5)
-sim_step.run_sim()
-
-sim_constant = WF(params)
-sim_constant.run_sim()
+   import os
+   docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
 
 
-# Below is the Muller Plots side by side
-fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-sim_step.muller_plot(ax=ax1) # Plot the linear simulation on one side
-ax1.set_title("Step Fitness")
-sim_constant.muller_plot(ax=ax2) # Plot the constant simulation on the other side
-ax2.set_title("Constant Fitness")
-fig1.suptitle("Muller Plots")
-# plt.savefig(os.path.join(docs_dir, '10percent_1.15_muller_comparison_wf.png'), dpi=150, bbox_inches='tight')
+   sim_step = WFStepFitness(params, a_intercept=1.05, t_time=25) # change time step and starting fitness here
+   sim_step.run_sim()
+
+   sim_constant = WF(params)
+   sim_constant.run_sim()
 
 
-# Plot Mean Clone Sizes
-fig2, (ax3, ax4) = plt.subplots(1, 2, figsize=(12, 5))
-sim_step.plot_mean_clone_size_graph_for_non_mutation(ax=ax3)
-ax3.set_title("Step Fitness")
-sim_constant.plot_mean_clone_size_graph_for_non_mutation(ax=ax4)
-ax4.set_title("Constant Fitness")
-fig2.suptitle("Mean Clone Size")
-# plt.savefig(os.path.join(docs_dir, '10percent_1.15_size_comparison_wf.png'), dpi=150, bbox_inches='tight')
+   # Below is the Muller Plots side by side
+   fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+   sim_step.muller_plot(ax=ax1) # Plot the linear simulation on one side
+   ax1.set_title("Step Fitness")
+   sim_constant.muller_plot(ax=ax2) # Plot the constant simulation on the other side
+   ax2.set_title("Constant Fitness")
+   fig1.suptitle("Muller Plots")
+   plt.savefig(os.path.join(docs_dir, 't25_1.05_step_muller.png'), dpi=150, bbox_inches='tight')
 
 
-# Plot Survival Rate on the same graph 
-fig, ax = plt.subplots(figsize=(8, 5))  # creates 1 figure with two graphs
-sim_constant.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Constant Fitness')
-sim_step.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Step Fitness') 
-ax.legend()
-plt.title("Survival Comparison: Constant vs Step Fitness")
-plt.tight_layout()
-# plt.savefig(os.path.join(docs_dir, '10percent_1.15_survival_comparison_wf.png'), dpi=150, bbox_inches='tight')
+   # Plot Mean Clone Sizes
+   fig2, (ax3, ax4) = plt.subplots(1, 2, figsize=(12, 5))
+   sim_step.plot_mean_clone_size_graph_for_non_mutation(ax=ax3)
+   ax3.set_title("Step Fitness")
+   sim_constant.plot_mean_clone_size_graph_for_non_mutation(ax=ax4)
+   ax4.set_title("Constant Fitness")
+   fig2.suptitle("Mean Clone Size")
+   plt.savefig(os.path.join(docs_dir, 't25_1.05_step_size.png'), dpi=150, bbox_inches='tight')
 
 
-plt.show()
+   # Plot Survival Rate on the same graph 
+   fig, ax = plt.subplots(figsize=(8, 5))  # creates 1 figure with two graphs
+   sim_constant.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Constant Fitness')
+   sim_step.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Step Fitness') 
+   ax.legend()
+   plt.title("Survival Comparison: Constant vs Step Fitness")
+   plt.tight_layout()
+   plt.savefig(os.path.join(docs_dir, 't25_1.05_step_survival.png'), dpi=150, bbox_inches='tight')
+
+
+   plt.show()
 
 
