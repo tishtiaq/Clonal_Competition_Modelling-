@@ -14,7 +14,7 @@ In each of the sections below you can see how these additional searches have som
 ## Exponential Function Simulation 
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals coarse 2d | marginals tight 2d | marginals 3d | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec |
 |---|---|---|---|---|---|---|---|---|
-| ![](step_sim_tp53_best_fit.png)| ![](exp_tp53_best_fit_3d.png) | ![](exp_best_fits_with_and_without_feedbacks.png) | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](exp_tp53_3d_marginals.png) | ![](exp_tp53_3d_surface_fit_ind.png) | ![](exp_tp53_3d_surface_fit_dec.png) | ![](exp_tp53_3d_surface_ind_dec.png) |
+| ![](step_sim_tp53_best_fit.png)| ![](exp_tp53_best_fit_3d.png) | ![](exp_best_fits_with_and_without_feedbacks.png) | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](exp_tp53_3d_marginals.png) | ![](exp_tp53_3d_surface_fit_ind.png) | ![](exp_tp53_3d_surface_fit_dec.png) | ![](exp_tp53_3d_surface_ind_dec.png) | 
 
 ## Linear Function Simulation 
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec | marginals 3d |
@@ -28,8 +28,11 @@ In each of the sections below you can see how these additional searches have som
 |  ![](tp53_heatmap_tight_loglik.png)  |  ![](tp53_heatmap_tight_prob.png)  | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) |
 
 
-TODO: Maybe run using oscillating fitness too?
+## Showing the difference between the models
 
+| % Wild-type | Fitness of Mutants | Muller Plots | Mean Clone Size | Survival Rate |
+|---|---|---|---|---|
+| 90 | 1.05 |  ![](models_comparison_muller_plot.png)  | ![](models_comparison_mean_clone_size_combined.png) |  ![](models_comparison_survival.png) |
 
 
 
