@@ -18,7 +18,7 @@ params = Parameters(
     algorithm="WF", 
     times=TimeParameters(max_time=100, division_rate=1), 
     population=PopulationParameters(initial_size_array=np.concatenate([[9000], np.ones(1000, dtype=int)])), # Change ratio of wild-type : higher fitness HERE
-    fitness=FitnessParameters(initial_fitness_array=np.concatenate([[1.0], np.ones(1000)*1.05])) # Change fitness of fitter clone HERE
+    fitness=FitnessParameters(initial_fitness_array=np.concatenate([[1.0], np.ones(1000)*1.15])) # Change fitness of fitter clone HERE
 )
 
 import os
@@ -30,15 +30,15 @@ sim_constant = WF(params)
 sim_constant.run_sim()
 
 # 2: Run Step model 
-sim_step = WFStepFitness(params, a_intercept=1.05, t_time=10) 
+sim_step = WFStepFitness(params, a_intercept=1.15, t_time=10) 
 sim_step.run_sim()
 
 # 3: Run Linear model
-sim_linear = WFLinearFitness(params, a_intercept=1.05)
+sim_linear = WFLinearFitness(params, a_intercept=1.15)
 sim_linear.run_sim()
 
 # 4: Run Exponential model
-sim_exponential = ExponentialFitness(params, a_coefficient=1.05)
+sim_exponential = ExponentialFitness(params, a_coefficient=1.15)
 sim_exponential.run_sim()
 
 
@@ -58,7 +58,7 @@ sim_exponential.muller_plot(ax=ax4)
 ax4.set_title("Exponential Fitness")
 
 fig1.suptitle("Muller Plots")
-plt.savefig(os.path.join(docs_dir, 'models_comparison_muller_plot.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '1.15_models_comparison_muller_plot.png'), dpi=150, bbox_inches='tight')
 
 
 '''
@@ -90,7 +90,7 @@ sim_exponential.plot_mean_clone_size_graph_for_non_mutation(ax=ax_combined, lege
 ax_combined.legend()
 plt.title("Mean Clone Size of Different Models")
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'models_comparison_mean_clone_size_combined.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '1.15_models_comparison_mean_clone_size_combined.png'), dpi=150, bbox_inches='tight')
 
 
 # Plot Survival Rate on the same graph 
@@ -102,7 +102,7 @@ sim_exponential.plot_surviving_clones_for_non_mutation(ax=ax, legend_label='Expo
 ax.legend()
 plt.title("Clone Survival Rate")
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'models_comparison_survival.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, '1.15_models_comparison_survival.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()
