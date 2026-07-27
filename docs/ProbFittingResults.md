@@ -36,6 +36,11 @@ In each of the sections below you can see how these additional searches have som
 | 90 | 1.15 |  ![](1.15_models_comparison_muller_plot.png)  | ![](1.15_models_comparison_mean_clone_size_combined.png) |  ![](1.15_models_comparison_survival.png) |
 
 
+# Residuals
+| Residuals Plot |
+|---|
+| ![](residuals_all_models.png) |
+
 
 
 
