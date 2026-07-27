@@ -11,8 +11,9 @@ In each of the sections below you can see how these additional searches have som
 |---|---|---|---|---|---|---|---|---|
 | ![](step_sim_tp53_best_fit.png)| ![](step_sim_tp53_best_fit_3d.png) | ![](step_sim_best_fits_with_and_without_feedbacks.png) | ![](step_sim_tp53_marginals_coarse.png) | ![](step_sim_tp53_marginals_tight.png) | ![](step_sim_tp53_3d_marginals.png) | ![](step_sim_tp53_3d_surface_fit_ind.png) | ![](step_sim_tp53_3d_surface_fit_dec.png) | ![](step_sim_tp53_3d_surface_ind_dec.png) |
 
-
-| ![](0-50_step_sim_tp53_best_fit.png)| ![](0-50_step_sim_tp53_best_fit_3d.png) | ![](0-50_step_sim_best_fits_with_and_without_feedbacks.png) | ![](0-50_step_sim_tp53_3d_marginals.png) | ![](0-50_step_sim_tp53_3d_marginals.png) | ![](0-50_step_sim_tp53_3d_marginals.png) | ![](0-50_step_sim_tp53_3d_surface_fit_ind.png) | ![](0-50_step_sim_tp53_3d_surface_fit_dec.png) | ![](0-50_step_sim_tp53_3d_surface_ind_dec.png) | 
+| best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals 3d | surface plot fit-ind | surface plot fit-time | surface plot ind-time |
+|---|---|---|---|---|---|---|
+| ![](0-50_step_sim_tp53_best_fit.png)| ![](0-50_step_sim_tp53_best_fit_3d.png) | ![](0-50_step_sim_best_fits_with_and_without_feedbacks.png) | ![](0-50_step_sim_tp53_3d_marginals.png) | ![](0-50_step_sim_tp53_3d_surface_fit_ind.png) | ![](0-50_step_sim_tp53_3d_surface_fit_dec.png) | ![](0-50_step_sim_tp53_3d_surface_ind_dec.png) | 
 
 ## Exponential Function Simulation 
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals coarse 2d | marginals tight 2d | marginals 3d | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec |
