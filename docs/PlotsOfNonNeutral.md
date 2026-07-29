@@ -4,10 +4,10 @@ Using WF algorithm:
 
 | Total cells | No. of cells in wild-type clone | No. of non-neutral cells | Fitness of non-neutral cells | Muller Plot | Mean Clone Size | Clone Survival |
 |---|---|---|---|---|---|---| 
-| 10000 |     9950      |    50    |     1.3     |  ![](/docs/9950v50_1.3_muller_comparison_wf.png)     |  ![](/docs/9950v50_1.3_size_comparison_wf.png)   |   ![](/docs/9950v50_1.3_survival_comparison_wf.png)   | 
-| 10000 |     9900      |    100   |     1.3     |  ![](/docs/9900v100_1.3_muller_comparison_wf.png)    |  ![](/docs/9900v100_1.3_size_comparison_wf.png)  |   ![](/docs/9900v100_1.3_survival_comparison_wf.png)  | 
-| 10000 |     9900      |    100   |     1.15     |  ![](/docs/9900v100_1.15_muller_comparison_wf.png)    |  ![](/docs/9900v100_1.15_size_comparison_wf.png)  |   ![](/docs/9900v100_1.15_survival_comparison_wf.png)  | 
-| 10000 |     9900      |    100   |     1.05     |  ![](/docs/9900v100_1.05_muller_comparison_wf.png)    |  ![](/docs/9900v100_1.05_size_comparison_wf.png)  |   ![](/docs/9900v100_1.05_survival_comparison_wf.png)  | 
+| 10000 |     9950      |    50    |     1.3     |  ![](/docs/WFPlotsNonSpatial/9950v50_1.3_muller_comparison_wf.png)     |  ![](/docs/WFPlotsNonSpatial/9950v50_1.3_size_comparison_wf.png)   |   ![](/docs/WFPlotsNonSpatial/9950v50_1.3_survival_comparison_wf.png)   | 
+| 10000 |     9900      |    100   |     1.3     |  ![](/docs/WFPlotsNonSpatial/9900v100_1.3_muller_comparison_wf.png)    |  ![](/docs/WFPlotsNonSpatial/9900v100_1.3_size_comparison_wf.png)  |   ![](/docs/WFPlotsNonSpatial/9900v100_1.3_survival_comparison_wf.png)  | 
+| 10000 |     9900      |    100   |     1.15     |  ![](/docs/WFPlotsNonSpatial/9900v100_1.15_muller_comparison_wf.png)    |  ![](/docs/WFPlotsNonSpatial/9900v100_1.15_size_comparison_wf.png)  |   ![](/docs/WFPlotsNonSpatial/9900v100_1.15_survival_comparison_wf.png)  | 
+| 10000 |     9900      |    100   |     1.05     |  ![](/docs/WFPlotsNonSpatial/9900v100_1.05_muller_comparison_wf.png)    |  ![](/docs/WFPlotsNonSpatial/9900v100_1.05_size_comparison_wf.png)  |   ![](/docs/WFPlotsNonSpatial/9900v100_1.05_survival_comparison_wf.png)  | 
 
 
 | Total cells | No. of cells in wild-type clone | No. of non-neutral cells | Fitness of non-neutral cells | Muller Plot | Spatial Grid | 
