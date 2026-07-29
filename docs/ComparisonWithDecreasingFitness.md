@@ -46,11 +46,10 @@
 
 | No. of clones | Percentage of Cells Which Are Wild-Types | Clone Survival Plot | Time Steps |
 |---|---|---|---|
-| 10000 |   0.1     |     ![](/docs/survival_comparison_constant_vs_linear.png)  |  100    |
-| 10000 |   0.1     |     ![](/docs/time1000_survival_comparison.png)            |  1000   |
-| 10000 |   1.0     |     ![](/docs/1percent_wild_survival_comparison.png)       |  1000   |
-| 10000 |   10.0    |     ![](/docs/10percent_wild_survival_comparison.png)      |  1000   |
-| 10000 |   50.0    |     ![](/docs/50percent_wild_survival_comparison.png)      |  1000   |
+| 10000 |   0.1     |     ![](/docs/LinearPlots/survival_comparison_constant_vs_linear.png)  |  100    |
+| 10000 |   0.1     |     ![](/docs/LinearPlots/time1000_survival_comparison.png)            |  1000   |
+| 10000 |   1.0     |     ![](/docs/Old+Repeats/1percent_wild_survival_comparison.png)       |  1000   |
+| 10000 |   50.0    |     ![](/docs/LinearPlots/50percent_wild_survival_comparison.png)      |  1000   |
 
 # Spatial Plots (using WF2D)
 
