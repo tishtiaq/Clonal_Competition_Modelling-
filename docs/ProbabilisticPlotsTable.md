@@ -19,4 +19,8 @@
 | ![](expo_tp53_3d_surface_fit_dec.png) | ![](expo_tp53_3d_surface_fit_ind.png) | ![](expo_tp53_3d_surface_ind_dec.png) | ![](expo_tp53_best_fit_3d.png) |  ![](expo_tp53_3d_marginals.png)  |
 
 
+# Best fit plots with and without feedbacks
+|Best Fit Plots |
+|---|
+| ![](expo_best_fits_with_and_without_feedbacks.png) |
 

@@ -10,42 +10,42 @@ In each of the sections below you can see how these additional searches have som
 ### Searched for t_time in range 50-350
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals coarse 2d | marginals tight 2d | marginals 3d | surface plot fit-ind | surface plot fit-time | surface plot ind-time |
 |---|---|---|---|---|---|---|---|---|
-| ![](step_sim_tp53_best_fit.png)| ![](step_sim_tp53_best_fit_3d.png) | ![](step_sim_best_fits_with_and_without_feedbacks.png) | ![](step_sim_tp53_marginals_coarse.png) | ![](step_sim_tp53_marginals_tight.png) | ![](step_sim_tp53_3d_marginals.png) | ![](step_sim_tp53_3d_surface_fit_ind.png) | ![](step_sim_tp53_3d_surface_fit_dec.png) | ![](step_sim_tp53_3d_surface_ind_dec.png) |
+| ![](/StepPlots/step_sim_tp53_best_fit.png)| ![](/StepPlots/step_sim_tp53_best_fit_3d.png) | ![](/StepPlots/step_sim_best_fits_with_and_without_feedbacks.png) | ![](/StepPlots/step_sim_tp53_marginals_coarse.png) | ![](/StepPlots/step_sim_tp53_marginals_tight.png) | ![](/StepPlots/step_sim_tp53_3d_marginals.png) | ![](/StepPlots/step_sim_tp53_3d_surface_fit_ind.png) | ![](/StepPlots/step_sim_tp53_3d_surface_fit_dec.png) | ![](/StepPlots/step_sim_tp53_3d_surface_ind_dec.png) |
 
 ### Searched for t_time in range 0-50
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals 3d | surface plot fit-ind | surface plot fit-time | surface plot ind-time |
 |---|---|---|---|---|---|---|
-| ![](0-50_step_sim_tp53_best_fit.png)| ![](0-50_step_sim_tp53_best_fit_3d.png) | ![](0-50_step_sim_best_fits_with_and_without_feedbacks.png) | ![](0-50_step_sim_tp53_3d_marginals.png) | ![](0-50_step_sim_tp53_3d_surface_fit_ind.png) | ![](0-50_step_sim_tp53_3d_surface_fit_dec.png) | ![](0-50_step_sim_tp53_3d_surface_ind_dec.png) | 
+| ![](/StepPlots/0-50_step_sim_tp53_best_fit.png)| ![](/StepPlots/0-50_step_sim_tp53_best_fit_3d.png) | ![](/StepPlots/0-50_step_sim_best_fits_with_and_without_feedbacks.png) | ![](/StepPlots/0-50_step_sim_tp53_3d_marginals.png) | ![](/StepPlots/0-50_step_sim_tp53_3d_surface_fit_ind.png) | ![](/StepPlots/0-50_step_sim_tp53_3d_surface_fit_dec.png) | ![](/StepPlots/0-50_step_sim_tp53_3d_surface_ind_dec.png) | 
 
 ## Exponential Function Simulation 
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | marginals coarse 2d | marginals tight 2d | marginals 3d | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec |
 |---|---|---|---|---|---|---|---|---|
-| ![](step_sim_tp53_best_fit.png)| ![](exp_tp53_best_fit_3d.png) | ![](exp_best_fits_with_and_without_feedbacks.png) | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) | ![](exp_tp53_3d_marginals.png) | ![](exp_tp53_3d_surface_fit_ind.png) | ![](exp_tp53_3d_surface_fit_dec.png) | ![](exp_tp53_3d_surface_ind_dec.png) | 
+| ![](/ExponentialPlots/step_sim_tp53_best_fit.png)| ![](/ExponentialPlots/exp_tp53_best_fit_3d.png) | ![](/ExponentialPlots/exp_best_fits_with_and_without_feedbacks.png) | ![](/Old+Repeats/tp53_marginals_coarse.png) | ![](/Old+Repeats/tp53_marginals_tight.png) | ![](/ExponentialPlots/exp_tp53_3d_marginals.png) | ![](/ExponentialPlots/exp_tp53_3d_surface_fit_ind.png) | ![](/ExponentialPlots/exp_tp53_3d_surface_fit_dec.png) | ![](/ExponentialPlots/exp_tp53_3d_surface_ind_dec.png) | 
 
 ## Linear Function Simulation 
 | best fit w/o feedbacks | best fit with feedbacks | best fit with and w/o feedbacks | surface plot fit-ind | surface plot fit-dec | surface plot ind-dec | marginals 3d |
 |---|---|---|---|---|---|---|
-| ![](tp53_best_fit.png)| ![](lin_tp53_best_fit_3d.png) | ![](lin_best_fits_with_and_without_feedbacks.png) | ![](lin_tp53_3d_surface_fit_ind.png) | ![](lin_tp53_3d_surface_fit_dec.png) | ![](lin_tp53_3d_surface_ind_dec.png) | ![](lin_tp53_3d_marginals.png) |
+| ![](/Old+Repeats/tp53_best_fit.png)| ![](/LinearPlots/lin_tp53_best_fit_3d.png) | ![](/LinearPlots/lin_best_fits_with_and_without_feedbacks.png) | ![](/LinearPlots/lin_tp53_3d_surface_fit_ind.png) | ![](/LinearPlots/lin_tp53_3d_surface_fit_dec.png) | ![](/LinearPlots/lin_tp53_3d_surface_ind_dec.png) | ![](/LinearPlots/lin_tp53_3d_marginals.png) |
 
 
 ## Linear Heatmaps and marginals without using feedbacks:
 | heatmap loglikelihood tight | heatmap probability tight | marginals coarse 2d | marginals tight 2d |
 |---|---|---|---|
-|  ![](tp53_heatmap_tight_loglik.png)  |  ![](tp53_heatmap_tight_prob.png)  | ![](tp53_marginals_coarse.png) | ![](tp53_marginals_tight.png) |
+|  ![](/Old+Repeats/tp53_heatmap_tight_loglik.png)  |  ![](/Old+Repeats/tp53_heatmap_tight_prob.png)  | ![](/Old+Repeats/tp53_marginals_coarse.png) | ![](/Old+Repeats/tp53_marginals_tight.png) |
 
 
 ## Showing the difference between the models
 
 | % Wild-type | Fitness of Mutants | Muller Plots | Mean Clone Size | Survival Rate |
 |---|---|---|---|---|
-| 90 | 1.05 |  ![](models_comparison_muller_plot.png)  | ![](models_comparison_mean_clone_size_combined.png) |  ![](models_comparison_survival.png) |
-| 90 | 1.15 |  ![](1.15_models_comparison_muller_plot.png)  | ![](1.15_models_comparison_mean_clone_size_combined.png) |  ![](1.15_models_comparison_survival.png) |
+| 90 | 1.05 |  ![](/ModelComparisons/models_comparison_muller_plot.png)  | ![](/ModelComparisons/models_comparison_mean_clone_size_combined.png) |  ![](/ModelComparisons/models_comparison_survival.png) |
+| 90 | 1.15 |  ![](/ModelComparisons/1.15_models_comparison_muller_plot.png)  | ![](/ModelComparisons/1.15_models_comparison_mean_clone_size_combined.png) |  ![](/ModelComparisons/1.15_models_comparison_survival.png) |
 
 
 # Residuals
 | Residuals Plot |
 |---|
-| ![](residuals_all_models.png) |
+| ![](/ModelComparisons/residuals_all_models.png) |
 
 
 
