@@ -16,11 +16,11 @@
 ## In the following plots we are using exponential fitness feedbacks
 | Heatmap Fitness-Decay | Heatmap Fitness-Induction | Heatmap Induction-Decay | Best Fit Plot | Marginal Plots |
 |---|---|---|---|---|
-| ![](expo_tp53_3d_surface_fit_dec.png) | ![](expo_tp53_3d_surface_fit_ind.png) | ![](expo_tp53_3d_surface_ind_dec.png) | ![](expo_tp53_best_fit_3d.png) |  ![](expo_tp53_3d_marginals.png)  |
+| ![](ExponentialPlots/expo_tp53_3d_surface_fit_dec.png) | ![](ExponentialPlots/expo_tp53_3d_surface_fit_ind.png) | ![](ExponentialPlots/expo_tp53_3d_surface_ind_dec.png) | ![](ExponentialPlots/expo_tp53_best_fit_3d.png) |  ![](ExponentialPlots/expo_tp53_3d_marginals.png)  |
 
 
 # Best fit plots with and without feedbacks
 |Best Fit Plots |
 |---|
-| ![](expo_best_fits_with_and_without_feedbacks.png) |
+| ![](ExponentialPlots/expo_best_fits_with_and_without_feedbacks.png) |
 
