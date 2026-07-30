@@ -9,10 +9,10 @@ Previously, in clonal simulations, the fitness of TP53 was modelled as a constan
 
 
 Guide to getting around:
-1. src
+1. *src*
 The folder CCM contains all the code I have written across the project. ABC_Inference contains all the python code which uses ABC-SMC as a way of inferring fitness. Custom_Classes contains py files of all the custom classes written to override how next generations are generated.
    
-2. docs
+2. *docs*
 a) ProbFittingResults.md
 This contains all the final results of my project. The heatmaps from the 2D grid searches and from the 3D cube searches are contained within here. Also the marginal plots showing the likelihood functions for fitness, induction and decay. Moreover this contains the residuals plots and mean clone size plots as a way to compare the models. The greatly improved best fit of the exponential and linear functions can be seen, and the poor fit of the step function can also be seen. 
 b) PlotsOfNonNeutral.md
@@ -26,7 +26,7 @@ e) combined_fitting_results.png shows the inferred fitness from the ABC-SMC simu
 
 All other subfolders in the docs section show a range of plots and heatmaps, and are organised based off which model they use. The names for all plots are intuitive.
 
-3. data
+3. *data*
 Contains the excel spreadsheet of the mouse data from the experiment. 
 
 
