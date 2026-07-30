@@ -29,6 +29,9 @@ All other subfolders in the docs section show a range of plots and heatmaps, and
 3. *data*
 Contains the excel spreadsheet of the mouse data from the experiment. 
 
+4. *archive* 
+Contains code from Michael Hall's clone-competition-simulation github repo that I used to understand the basics of computational biology with this particular model, simulations and algorithms, and based the majority of the code I have written off. 
+
 
 
 
