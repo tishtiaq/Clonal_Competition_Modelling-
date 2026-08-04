@@ -57,4 +57,3 @@ if __name__ == "__main__":
 
     plt.show()
     print("Final fitness of the second clone:", sim.clones_array[1, sim.fitness_idx])
-    

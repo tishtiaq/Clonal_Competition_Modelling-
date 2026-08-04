@@ -106,3 +106,5 @@ plt.title("WF Linear Fitness - Clone Size and Survival")
 plt.tight_layout()
 plt.savefig(os.path.join(docs_dir, 'combined_wf_linear10000clones.png'), dpi=150, bbox_inches='tight')
 '''
+
+# TODO: In the commented out code above, make the line thicker and white (or any colour so that we can see it more easily)

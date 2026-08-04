@@ -1,16 +1,10 @@
- #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
 
-@author: syedtariqishtiaq
 
-"""
 
-# This code will run a simulation for 3 timepoints but using the 
+# This code will run a simulation for specified number of timepoints (2, 3 or 6) but using the 
 # function for fitness in which fitness decreases linearly with time. 
 
-# Code is adapted from MyInference python files.
-
+# Code is adapted from MyInference python files. 
 
 from pyabc import (ABCSMC, RV, Distribution, PNormDistance)
 # Here we're importing classes to use later. pyabc is used for 
@@ -27,7 +21,7 @@ from clone_competition_simulation.parameters import Parameters
 import pyabc.visualization.credible as credible
 import sys
 
-from WFLinearFitness2D import LinearFitness2D
+from WFLinearFitness2D import WFLinearFitness2D
 from clone_competition_simulation import WF2D
 
 from clone_competition_simulation.parameters import (Parameters, 
@@ -54,7 +48,7 @@ ERROR_OBJECT = {'distance': 100000}
 # Or any large number will work: the pyabc algorithm will use this as
 # an upper bound
 
-LOOP_LIMITS = 5
+LOOP_LIMITS = 50
 # 4 grids is a full mouse oesophagus: 50 grids is then 12.5 mice worth
 # Therefore if fitness or induction is very low early on, clones will
 # die out. So, 50 is a safe cap of, try 50 times, and at least some 
@@ -152,17 +146,16 @@ def run_sim(parameters, times, samplesPerTimepoint, target_data, return_takeover
         # by line 102 of TakeoverFitting code
 
         full_results = []
-# We removed the if here
         for loop in range(LOOP_LIMITS):
-           s = LinearFitness2D(p, a_intercept=a_intercept)
-           s.slope = b_slope  # override the auto-derived slope with the ABC-proposed one
-           s.run_sim()
-           full_results.append(get_mutant_takeover(s))
+            s = WFLinearFitness2D(p, a_intercept=a_intercept)
+            s.slope = b_slope  # override the auto-derived slope with the ABC-proposed one
+            s.run_sim()
+            full_results.append(get_mutant_takeover(s))
 
 # Runs simulation up to 50 times, takes average of each timepoint.
 # This bit of code was changed from the initial to average the 
 # timepoints instead of taking just the final one of 50
-        takeover = np.mean(full_results, axis=0)
+    
         if return_takeover:
             return transformBySampling(takeover, samplesPerTimepoint)
         
@@ -190,24 +183,24 @@ if __name__ == "__main__":
 # Sets up initial beliefs about the data to apply ABC on (gives
 # very wide initial berth. RV is imported from pyabc.)
 
-    DATA_FILE = "data/41467_2022_33945_MOESM5_ESM.xlsx"
+    DATA_FILE = "41467_2022_33945_MOESM5_ESM.xlsx"
     # load the data file
-    times = np.array([7*i for i in [1.5, 3, 6]])          
+    times = np.array([7*i for i in [1.5, 3, 6, 12, 24, 52]])          
     # Multiplying by 7 gives us the timepoints in days instead
     # weeks, and transforming it a numpy array makes it easier
     # to work with 
-    dataset = pd.read_excel(DATA_FILE, sheet_name="Supplementary Data 5", skiprows=5, skipfooter=12,
+    dataset = pd.read_excel(DATA_FILE, sheet_name="Supplementary Data 5", skiprows=5, skipfooter=1,
                            usecols="E", header=None, engine='openpyxl').to_numpy()[:,0]
     # Open an excel file and read it into in a table pandas 
     # can work with. sheet_name picks the exact sheet to work 
     # with. skiprows says skip the first 5 rows. skipfooter
-    # tells us to ignore the last 12 rows as we're using the first 3 timepoints.
-    # usecols says to only use column Ewhich shows % GFP area: the  fraction of the 
+    # tells us to ignore the last row. usecols says to only use
+    # column E which shows % GFP area: the  fraction of the 
     # mouse's tissue taken over by labelled clone. engine says
     # which pandas library to open. to_numpy says convert to
     # a numpy array. [:,0] converts from a 2D object to a 1D array
 
-    samplesPerTimepoint = [4,4,3]
+    samplesPerTimepoint = [4,4,3,4,4,3]
     # number of mice sampled at each timepoint
     distance = PNormDistance()
     # tells pyabc to interpret what its been given as a distance
@@ -222,15 +215,15 @@ if __name__ == "__main__":
     # a partial object has no __name__: this changes that so 
     # f's __name__ is now run_sim
     abc = ABCSMC(f, priors, distance, population_size=100, sampler=sampler)
-    db_path_first3 = ("sqlite:///" + "TP53First3_TimeVarying"+'_pyabc.db')
+    db_path_all = ("sqlite:///" + "TP53All_TimeVarying"+'_pyabc.db')
     # constructs address of where the database should live
     
-    r = abc.new(db_path_first3, {'distance': 0})
+    r = abc.new(db_path_all, {'distance': 0})
     # creates new database file. {'distance': 0} tells pyabc 
     # what the data looks like, in the same shape that run_sim
     # returns its results in
     print("RunID:", r.id)
-    hist_first3 = abc.run(minimum_epsilon=0.1, max_nr_populations=15)
+    hist_all = abc.run(minimum_epsilon=0.1, max_nr_populations=15)
     # gives the 2 stopping conditions on the simulation: either
     # the simulation continues until distance has gone below 0.1
     # or we hit 15 generations
@@ -243,7 +236,8 @@ if __name__ == "__main__":
         median = credible.compute_quantile(vals, w, 0.5)
         return {'median': median, 'CI_lower_bound': lb, 'CI_upper_bound':ub}
     
-    df, w = hist_first3.get_distribution() 
+    df, w = hist_all.get_distribution() 
     # df is the table and w are the weights of each value
     for p in ['a_intercept', 'b_slope', 'induction']:
         print(p, get_estimate_and_ci_for_param(p, df, w))
+

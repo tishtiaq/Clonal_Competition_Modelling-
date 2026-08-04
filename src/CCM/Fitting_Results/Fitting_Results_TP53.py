@@ -96,7 +96,7 @@ def plot_results(all_results):
 def main():
     # Setting up databases
     
-    db_path_moran_first2 = "sqlite:///" + "Moran2DTP53First3_pyabc.db"
+    db_path_moran_first2 = "sqlite:///" + "Moran2DTP53First2_pyabc.db"
     # tells the next line where to open
     hist_moran_first2 = History(db_path_moran_first2)
     # creates an object in the class History (part of pyabc)
@@ -114,6 +114,7 @@ def main():
     FIRST3_PARAMS = get_inferred_fit(df_moran_first3, w_moran_first3)
     # creates file for the first 3 timepoints
    
+   # TODO: Run this once the below simulation has finished
     db_path_moran_all = "sqlite:///" + "Moran2DTP53All6_pyabc.db"
     hist_moran_all = History(db_path_moran_all)
     df_moran_all, w_moran_all = hist_moran_all.get_distribution(m=0)

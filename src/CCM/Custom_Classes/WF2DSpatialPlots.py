@@ -26,7 +26,7 @@ initial_grid[:50, :] = 1      # 2D slicing syntax: first colon is rows, second i
 params = Parameters(
     algorithm="WF2D", times= TimeParameters(max_time=100, division_rate=1, samples=4),
     population= PopulationParameters(initial_grid=initial_grid, cell_in_own_neighbourhood=False),
-    fitness= FitnessParameters(initial_fitness_array=np.array([1, 1.15])),
+    fitness= FitnessParameters(initial_fitness_array=np.array([1, 1.05])),        # Change mutant fitness HERE and below
 )
 
 
@@ -34,14 +34,11 @@ import os
 docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
 
 
-sim_linear = LinearFitness2D(params, a_intercept=1.3)
+sim_linear = LinearFitness2D(params, a_intercept=1.05)          # Change mutant fitness HERE and above
 sim_linear.run_sim()
 
 sim_constant = WF2D(params)
 sim_constant.run_sim()
-
-
-print([m for m in dir(sim_constant) if 'grid' in m.lower() or 'plot' in m.lower()])
 
 
 # Fig1 shows the Muller plots
@@ -52,7 +49,7 @@ sim_constant.muller_plot(ax=ax2) # Plot the constant simulation on the other sid
 ax2.set_title("Constant Fitness")
 fig1.suptitle("Muller Plots")
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'WF2D_1.15_muller_comparison.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'WF2D_1.05_muller_comparison.png'), dpi=150, bbox_inches='tight')
 
 
 # Fig2 shows the Spatial grid which displays the physical layout at end of simulation
@@ -67,8 +64,10 @@ sim_constant.plot_grid(ax=ax4)
 ax4.set_aspect('auto')
 ax4.axis('off')
 ax4.set_title("Constant Spatial Layout")
+
+fig2.suptitle("Spatial Grids")
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'WF2D_1.15_spatial_comparison.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'WF2D_1.05_spatial_comparison.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()

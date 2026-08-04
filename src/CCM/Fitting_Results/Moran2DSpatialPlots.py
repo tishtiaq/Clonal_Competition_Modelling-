@@ -1,6 +1,6 @@
 
 
-# Using WF2D
+# Using Moran2D
  
   
 # Creating a TWO DIMENSIONAL non-neutral simulation with X wild-type cells and Y single-cell
@@ -11,12 +11,12 @@
 # we will be able to see what effect a time-dependent fitness function has on the takeover in the tissue. 
 
 
-from clone_competition_simulation  import (WF2D, Parameters, SpatialCurrentData, TimeParameters,
+from clone_competition_simulation  import (Moran2D, Parameters, SpatialCurrentData, TimeParameters,
                                                              PopulationParameters, FitnessParameters)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt  
-from WFLinearFitness2D import LinearFitness2D
+from Moran2DLinearFitness import MoranLinearFitness2D
 
 
 initial_grid = np.zeros((100,100), dtype=int) 
@@ -24,7 +24,7 @@ initial_grid[:50, :] = 1      # 2D slicing syntax: first colon is rows, second i
                               # between mutants and wild-types. 
 
 params = Parameters(
-    algorithm="WF2D", times= TimeParameters(max_time=100, division_rate=1, samples=4),
+    algorithm="Moran2D", times= TimeParameters(max_time=100, division_rate=1, samples=4),
     population= PopulationParameters(initial_grid=initial_grid, cell_in_own_neighbourhood=False),
     fitness= FitnessParameters(initial_fitness_array=np.array([1, 1.15])),        # Change mutant fitness HERE and below
 )
@@ -34,10 +34,10 @@ import os
 docs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'docs')
 
 
-sim_linear = LinearFitness2D(params, a_intercept=1.15)          # Change mutant fitness HERE and above
+sim_linear = MoranLinearFitness2D(params, a_intercept=1.15)          # Change mutant fitness HERE and above
 sim_linear.run_sim()
 
-sim_constant = WF2D(params)
+sim_constant = MoranLinearFitness2D(params)
 sim_constant.run_sim()
 
 
@@ -49,7 +49,7 @@ sim_constant.muller_plot(ax=ax2) # Plot the constant simulation on the other sid
 ax2.set_title("Constant Fitness")
 fig1.suptitle("Muller Plots")
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'WF2D_1.05_muller_comparison.png'), dpi=150, bbox_inches='tight')
+# plt.savefig(os.path.join(docs_dir, 'Moran2D_1.15_muller_comparison.png'), dpi=150, bbox_inches='tight')
 
 
 # Fig2 shows the Spatial grid which displays the physical layout at end of simulation
@@ -67,7 +67,7 @@ ax4.set_title("Constant Spatial Layout")
 
 fig2.suptitle("Spatial Grids")
 plt.tight_layout()
-plt.savefig(os.path.join(docs_dir, 'WF2D_1.05_spatial_comparison.png'), dpi=150, bbox_inches='tight')
+plt.savefig(os.path.join(docs_dir, 'Moran2D_1.15_spatial_comparison.png'), dpi=150, bbox_inches='tight')
 
 
 plt.show()
