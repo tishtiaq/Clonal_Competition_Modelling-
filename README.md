@@ -11,7 +11,14 @@ Previously, in clonal simulations, the fitness of TP53 was modelled as a constan
 
 Guide to getting around:
 1. *src*
-The folder CCM contains all the code I have written across the project. ABC_Inference contains all the python code which uses ABC-SMC as a way of inferring fitness. Custom_Classes contains py files of all the custom classes written to override how next generations are generated.
+The folder CCM contains all the code I have written across the project. 
+a) ABC_Inference contains all the python code which uses ABC-SMC as a way of inferring fitness. 
+b) Custom_Classes contains py files of all the custom classes I have written to override how next generations are generated (i.e they use 
+linear, exponential, or other functions to rewrite the fitness of next generations then use that new fitness)
+c) Fitting_Results contains the code that is used to plot the fitting results (i.e the best fit lines) for both the ABC-SMC inference and the Probabilistic pseudo fittings code
+d) Prob_Inference contains the code for pseudo-likelihood grid fittings for different models.
+
+The code currently runs a 2D grid search first, using the function pseudoLikelihoodSweep; pseudoLikelihoodSweep3D is the function I created to add a 3rd dimension to the search. To make the probabilistic searching code run faster you can remove the 2D search and just have the 3D code run. 
    
 2. *docs*
 a) ProbFittingResults.md
