@@ -18,11 +18,11 @@ linear, exponential, or other functions to rewrite the fitness of next generatio
 c) Fitting_Results contains the code that is used to plot the fitting results (i.e the best fit lines) for both the ABC-SMC inference and the Probabilistic pseudo fittings code
 d) Prob_Inference contains the code for pseudo-likelihood grid fittings for different models.
 
-The code currently runs a 2D grid search first, using the function pseudoLikelihoodSweep; pseudoLikelihoodSweep3D is the function I created to add a 3rd dimension to the search. To make the probabilistic searching code run faster you can remove the 2D search and just have the 3D code run. 
+The pseudo-grid code currently runs a 2D grid search first, using the function pseudoLikelihoodSweep; pseudoLikelihoodSweep3D is the function I created to add a 3rd dimension to the search. To make the probabilistic searching code run faster you can remove the 2D search and just have the 3D code run. 
    
 2. *docs*
 a) ProbFittingResults.md
-This contains all the final results of my project. The heatmaps from the 2D grid searches and from the 3D cube searches are contained within here. Also the marginal plots showing the likelihood functions for fitness, induction and decay. Moreover this contains the residuals plots and mean clone size plots as a way to compare the models. The greatly improved best fit of the exponential and linear functions can be seen, and the poor fit of the step function can also be seen. 
+This contains all the final results of my project. The heatmaps from the 2D grid searches and from the 3D cube searches are contained within here. Also the marginal plots showing the likelihood functions for fitness, induction and decay. Moreover this contains the residuals plots and mean clone size plots as a way to compare the models. The greatly improved best fit of the exponential and linear functions can be seen, and the poor fit of the step function can also be seen. //
 b) PlotsOfNonNeutral.md
 Contains Muller plots, mean clone size plots and survival rates, using the WF algorithm. The second table uses the WF2D algorithm and also shows the spatial grid plots, which is a plot displaying the wild-types vs mutants at the end of the simulation. The pixels individually show the cells, and so you can see the patterns with which they takeover and spread. 
 c) ProbabilisticPlotsTable.md
