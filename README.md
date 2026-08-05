@@ -42,13 +42,8 @@ Contains code from Michael Hall's clone-competition-simulation github repo that 
 
 
 
-
-
-
-
-
-
-
+I would strongly recommend running the pseudo-likelihood grid searches on linux, or any other powerful machine as it will be much faster this way; if you are running ABC-SMC you absolutely MUST run it on linux as it is very expensive. 
+Any questions involving the code feel free to reach out to me at tariq.ishtiaq@berkeley.edu or tariq-ishtiaq@hotmail.com
 
 
 
